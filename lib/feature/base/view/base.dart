@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../app.dart';
 
 class BasePage extends StatefulWidget {
    const BasePage({Key? key}) : super(key: key);
+   static const path = '/base';
+   static const name = 'base';
 
+   static Widget pageBuilder(BuildContext context, GoRouterState state) {
+     return const BasePage();
+   }
     static final List<Widget> _widgetOptions = <Widget>[
       const MyHomePage(),
       const Text('Search Page'),
