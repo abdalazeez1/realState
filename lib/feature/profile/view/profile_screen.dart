@@ -1,0 +1,269 @@
+import 'package:flutter/material.dart';
+
+import '../../../constant.dart';
+
+class ProfileScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          // Background with Bezier Curve
+          TopImageProfile(),
+
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: kPage + 8),
+            child: Center(
+              child: Text(
+                'Email: john.doe@example.com',
+                style: Theme.of(context).textTheme.labelSmall,
+              ),
+            ),
+          ),
+          // // Cards Section
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: kPage),
+            child: Column(
+              children: [
+                BorderStyleProfile(
+                    child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    ProfileButton(
+                      isTop: true,
+                      icon: Icons.person,
+                      label: 'Edit Profile Information',
+                      onTap: () {
+                        // Add your edit profile information logic here
+                      },
+                    ),
+                    ProfileButton(
+                      icon: Icons.notifications,
+                      label: 'Notification',
+                      onTap: () {
+                        // Add your notification logic here
+                      },
+
+                    ),
+                    ProfileButton(
+                      icon: Icons.language,
+                      label: 'Language',
+                      onTap: () {
+                        // Add your language selection logic here
+                      },
+                    ),
+                  ],
+                )),
+                SizedBox(height: 20),
+                // Theme Section
+                BorderStyleProfile(
+                  child: ProfileButton(
+                    leading: Transform.scale(
+                        scale: 0.8,
+                        child: Switch(
+                          value: true,
+                          onChanged: (v) {},
+                        )),
+                    isTop: true,
+                    icon: Icons.color_lens,
+                    label: 'Theme',
+                    onTap: () {
+                      // Add your edit profile information logic here
+                    },
+                  ),
+                ),
+                SizedBox(height: 20),
+                BorderStyleProfile(
+                  child: Column(
+                    children: [
+                      ProfileButton(
+                        isTop: true,
+                        icon: Icons.security,
+                        label: 'Security',
+                        onTap: () {
+                          // Add your edit profile information logic here
+                        },
+                      ),
+                      ProfileButton(
+                        icon: Icons.lock,
+                        label: 'Privacy Policy',
+                        onTap: () {
+                          // Add your edit profile information logic here
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class BorderStyleProfile extends StatelessWidget {
+  const BorderStyleProfile({
+    super.key,
+    required this.child,
+  });
+
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+          // border: Border.all(color: Theme.of(context).colorScheme.outlineVariant),
+          borderRadius: BorderRadius.circular(16),
+          color: Theme.of(context).colorScheme.background,
+          boxShadow: [
+            BoxShadow(
+                color: Theme.of(context).colorScheme.shadow.withOpacity(0.15),
+                spreadRadius: 0.4,
+                offset: Offset(0, 10),
+                blurRadius: 10)
+          ]),
+      padding: const EdgeInsets.all(12),
+      child: child,
+    );
+  }
+}
+
+class TopImageProfile extends StatelessWidget {
+  const TopImageProfile({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: MediaQuery.of(context).size.height / 3,
+      child: Stack(
+        clipBehavior: Clip.none,
+        children: [
+          ClipPath(
+            clipper: BackgroundClipper(),
+            child: Container(
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    Colors.blue,
+                    Colors.lightBlueAccent,
+                  ],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                ),
+              ),
+            ),
+          ),
+          Positioned(
+            bottom: -10,
+            left: 0,
+            right: 0,
+            child: Column(
+              children: [
+                Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    CircleAvatar(
+                      radius: 50,
+                      child: Align(
+                        alignment: Alignment.bottomRight,
+                        child: Container(
+                          width: 30,
+                          height: 30,
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).colorScheme.secondary.withOpacity(0.4),
+                            shape: BoxShape.circle,
+                          ),
+                          child: IconButton(
+                            onPressed: () {
+                              // Add your edit profile logic here
+                            },
+                            icon: const FittedBox(child: Icon(Icons.edit)),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Text(
+                  'John Doe',
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+} // Custom Clipper for the Background with Bezier Curve
+
+class BackgroundClipper extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    final path = Path();
+    path.lineTo(0, size.height * 0.7);
+    path.quadraticBezierTo(size.width / 2, size.height * 0.9, size.width, size.height * 0.7);
+    path.lineTo(size.width, 0);
+    return path;
+  }
+
+  @override
+  bool shouldReclip(covariant CustomClipper<Path> oldClipper) => false;
+}
+
+// Custom Button Widget for Profile Screen
+class ProfileButton extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final Function onTap;
+  final bool isTop;
+  final Widget? leading;
+
+  const ProfileButton({
+    Key? key,
+    required this.icon,
+    required this.label,
+    required this.onTap,
+    this.isTop = false,
+    this.leading,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () => onTap(),
+      child: Padding(
+        padding: EdgeInsets.only(top: isTop ? 0 : 12),
+        child: Row(
+          children: [
+            Row(
+              children: [
+                Icon(
+                  icon,
+                  size: 25,
+                  color: Theme.of(context).colorScheme.outline,
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                Text(
+                  label,
+                  style: Theme.of(context).textTheme.bodyMedium,
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ),
+            if (leading != null) Spacer(),
+            if (leading != null) leading!,
+          ],
+        ),
+      ),
+    );
+  }
+}

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:realstate/feature/profile/view/profile_screen.dart';
 
 import '../../app.dart';
 
@@ -15,7 +16,7 @@ class BasePage extends StatefulWidget {
       const MyHomePage(),
       const Text('Search Page'),
       const Text('Favourite Page'),
-      const Text('Profile Page'),
+      ProfileScreen(),
     ];
 
   @override
@@ -34,7 +35,7 @@ class _BasePageState extends State<BasePage> {
     @override
     Widget build(BuildContext context) {
       return Scaffold(
-        appBar: AppBar(
+        appBar:_selectedIndex == 3 ? null:  AppBar(
           title: const Text('Bottom Navigation Bar Demo'),
         ),
         body: Center(
