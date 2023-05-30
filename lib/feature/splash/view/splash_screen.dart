@@ -23,17 +23,14 @@ class _SplashscreenState extends State<Splashscreen> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async{
-      context.goNamed(WelcomeScreen.name);
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+      await check();
     });
   }
 
- Future<void> check() async {
+  Future<void> check() async {
     await Future.delayed(Duration(seconds: 3));
-    print("not ");
     if (mounted) {
-      print("not in");
-
       context.goNamed(WelcomeScreen.name);
     }
   }
@@ -41,27 +38,57 @@ class _SplashscreenState extends State<Splashscreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Center(
-            child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-      SvgPicture.asset(Assets.imagesLogo),
-      const SizedBox(height: 20),
-      const Text(
-        'Your image description',
-        style: TextStyle(fontSize: 16),
-      ),
-      const Spacer(),
-      Align(
-          alignment: Alignment.bottomCenter,
-          child: Container(
-            margin: const EdgeInsets.only(bottom: 20),
-            child: const Text(
-              'Made with love',
-              style: TextStyle(
-                fontSize: 14,
-                color: Colors.grey,
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Spacer(),
+            LogoAndTitleApp(),
+            const Spacer(),
+             Align(
+              alignment: Alignment.bottomCenter,
+              child: Padding(
+                padding:  const EdgeInsets.only(bottom: 20),
+                child:  Text(
+                  'Made with love ❤',
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
               ),
-            ),
-          ))
-    ])));
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class LogoAndTitleApp extends StatelessWidget {
+  const LogoAndTitleApp({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        SvgPicture.asset(Assets.imagesLogo),
+        const SizedBox(height: 20),
+        TitleApp(),
+      ],
+    );
+  }
+}
+
+class TitleApp extends StatelessWidget {
+  const TitleApp({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      'Homy',
+      style: Theme.of(context).textTheme.displayLarge?.copyWith(color: Theme.of(context).colorScheme.primary),
+    );
   }
 }

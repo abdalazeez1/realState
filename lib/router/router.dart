@@ -1,12 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:realstate/feature/splash/view/splash_screen.dart';
 
 import '../feature/auth/view/signin_screen.dart';
 import '../feature/auth/view/signup_screen.dart';
+import '../feature/auth/view/verification_screen.dart';
 import '../feature/auth/view/welcom_scree.dart';
 import '../feature/base/view/base.dart';
-import '../feature/home/view/home_screen.dart';
 
 final GoRouter router = GoRouter(
     routes: <RouteBase>[
@@ -19,7 +18,10 @@ final GoRouter router = GoRouter(
       ///Auth
       GoRoute(path: WelcomeScreen.path, name: WelcomeScreen.name, builder: WelcomeScreen.pageBuilder, routes: [
         GoRoute(path: LoginScreen.path, name: LoginScreen.name, builder: LoginScreen.pageBuilder),
-        GoRoute(path: SignupScreen.path, name: SignupScreen.name, builder: SignupScreen.pageBuilder),
+        GoRoute(path: SignupScreen.path, name: SignupScreen.name, builder: SignupScreen.pageBuilder,routes: [
+          GoRoute(path: VerificationScreen.path, name: VerificationScreen.name, builder: VerificationScreen.pageBuilder),
+
+        ]),
       ]),
     ],
     redirect: (context, state) {
