@@ -33,7 +33,7 @@ class _SignupScreenState extends State<SignupScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              TopImageAuth(text: "Glad You're here"),
+              const TopImageAuth(text: "Glad You're here"),
               const SizedBox(height: 40),
               const Row(
                 children: [
@@ -47,18 +47,18 @@ class _SignupScreenState extends State<SignupScreen> {
                 ],
               ),
               const SizedBox(height: 10),
-              AppTextField(hintText: "Email"),
+              const AppTextField(hintText: "Email"),
               const SizedBox(height: 10),
-              AppTextField(hintText: "Password", obscure: true),
+              const AppTextField(hintText: "Password", obscure: true),
               const SizedBox(height: 10),
-              AppTextField(hintText: "Re-enter Password", obscure: true),
+              const AppTextField(hintText: "Re-enter Password", obscure: true),
               const SizedBox(height: 10),
-              AppTextField(hintText: "Phone Number"),
+              const AppTextField(hintText: "Phone Number"),
               const Spacer(),
               AuthButton(text: "Sign Up", func: () {
                 context.pushNamed(VerificationScreen.name);
               }),
-              SizedBox(height: 20,)
+              const SizedBox(height: 20,)
             ],
           ),
         ),

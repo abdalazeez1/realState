@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../constant.dart';
+import '../../notification/view/notification.dart';
 
 class ProfileScreen extends StatelessWidget {
+  const ProfileScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          // Background with Bezier Curve
-          TopImageProfile(),
-
+          const TopImageProfile(),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 20, horizontal: kPage + 8),
             child: Center(
@@ -42,6 +44,7 @@ class ProfileScreen extends StatelessWidget {
                       icon: Icons.notifications,
                       label: 'Notification',
                       onTap: () {
+                        context.pushNamed(NotificationScreen.name);
                         // Add your notification logic here
                       },
 
@@ -55,7 +58,7 @@ class ProfileScreen extends StatelessWidget {
                     ),
                   ],
                 )),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 // Theme Section
                 BorderStyleProfile(
                   child: ProfileButton(
@@ -73,7 +76,7 @@ class ProfileScreen extends StatelessWidget {
                     },
                   ),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 BorderStyleProfile(
                   child: Column(
                     children: [
@@ -123,7 +126,7 @@ class BorderStyleProfile extends StatelessWidget {
             BoxShadow(
                 color: Theme.of(context).colorScheme.shadow.withOpacity(0.15),
                 spreadRadius: 0.4,
-                offset: Offset(0, 10),
+                offset: const Offset(0, 10),
                 blurRadius: 10)
           ]),
       padding: const EdgeInsets.all(12),
@@ -259,7 +262,7 @@ class ProfileButton extends StatelessWidget {
                 ),
               ],
             ),
-            if (leading != null) Spacer(),
+            if (leading != null) const Spacer(),
             if (leading != null) leading!,
           ],
         ),
