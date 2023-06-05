@@ -9,6 +9,7 @@ import '../feature/auth/view/verification_screen.dart';
 import '../feature/auth/view/welcom_scree.dart';
 import '../feature/base/view/base.dart';
 import '../feature/notification/view/notification.dart';
+import '../feature/profile/view/edit_profile.dart';
 
 final GoRouter router = GoRouter(routes: <RouteBase>[
   ///Splash
@@ -17,6 +18,7 @@ final GoRouter router = GoRouter(routes: <RouteBase>[
   ///Base
   GoRoute(path: BasePage.path, name: BasePage.name, builder: BasePage.pageBuilder, routes: [
     GoRoute(path: NotificationScreen.path, name: NotificationScreen.name, builder: NotificationScreen.pageBuilder),
+    GoRoute(path: EditProfileScreen.path, name: EditProfileScreen.name, builder: EditProfileScreen.pageBuilder),
     GoRoute(path: AddAdsScreen.path, name: AddAdsScreen.name, builder: AddAdsScreen.pageBuilder, routes: [
       GoRoute(path: MapScreen.path, name: MapScreen.name, builder: MapScreen.pageBuilder),
     ]),

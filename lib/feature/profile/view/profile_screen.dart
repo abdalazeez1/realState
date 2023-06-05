@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../constant.dart';
 import '../../notification/view/notification.dart';
+import 'edit_profile.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -37,6 +38,7 @@ class ProfileScreen extends StatelessWidget {
                       icon: Icons.person,
                       label: 'Edit Profile Information',
                       onTap: () {
+                        context.goNamed(EditProfileScreen.name);
                         // Add your edit profile information logic here
                       },
                     ),
@@ -47,7 +49,6 @@ class ProfileScreen extends StatelessWidget {
                         context.pushNamed(NotificationScreen.name);
                         // Add your notification logic here
                       },
-
                     ),
                     ProfileButton(
                       icon: Icons.language,
