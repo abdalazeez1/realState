@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../constant.dart';
+import '../../../common/constant/constant.dart';
 import '../../notification/view/notification.dart';
 import 'edit_profile.dart';
 

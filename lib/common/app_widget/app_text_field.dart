@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../../constant.dart';
+import '../constant/constant.dart';
 
 class AppTextField extends StatelessWidget {
   const AppTextField({

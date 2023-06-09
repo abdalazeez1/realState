@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:realstate/constant.dart';
-import 'package:realstate/feature/auth/view/signin_screen.dart';
-import 'package:realstate/feature/auth/view/signup_screen.dart';
+import 'package:realstate/common/constant/constant.dart';
+import 'package:realstate/feature/auth/presentation/ui/screen/signin_screen.dart';
+import 'package:realstate/feature/auth/presentation/ui/screen/signup_screen.dart';
 import 'package:realstate/feature/base/view/base.dart';
 
-import '../../../generated/assets.dart';
-import '../../splash/view/splash_screen.dart';
+import '../../../../../generated/assets.dart';
+import '../../../../splash/view/splash_screen.dart';
 
 class WelcomeScreen extends StatefulWidget {
   static const path = '/welcome';

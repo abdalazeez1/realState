@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:realstate/feature/auth/view/welcom_scree.dart';
+import 'package:realstate/feature/auth/presentation/ui/screen/welcom_scree.dart';
 
 import '../../../generated/assets.dart';
 

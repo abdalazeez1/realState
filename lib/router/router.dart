@@ -3,10 +3,10 @@ import 'package:realstate/feature/splash/view/splash_screen.dart';
 
 import '../feature/add_ad/view/add_ad_screen.dart';
 import '../feature/add_ad/view/map_screen.dart';
-import '../feature/auth/view/signin_screen.dart';
-import '../feature/auth/view/signup_screen.dart';
-import '../feature/auth/view/verification_screen.dart';
-import '../feature/auth/view/welcom_scree.dart';
+import '../feature/auth/presentation/ui/screen/signin_screen.dart';
+import '../feature/auth/presentation/ui/screen/signup_screen.dart';
+import '../feature/auth/presentation/ui/screen/verification_screen.dart';
+import '../feature/auth/presentation/ui/screen/welcom_scree.dart';
 import '../feature/base/view/base.dart';
 import '../feature/notification/view/notification.dart';
 import '../feature/profile/view/edit_profile.dart';

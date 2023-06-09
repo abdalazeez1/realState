@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:realstate/common/app_widget/app_text_field.dart';
-import 'package:realstate/constant.dart';
+import 'package:realstate/common/constant/constant.dart';
 
 import '../../../common/app_widget/drop_down_menu.dart';
 import 'map_screen.dart';

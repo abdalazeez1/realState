@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pinput/pinput.dart';
-import 'package:realstate/constant.dart';
-import 'package:realstate/feature/auth/view/signin_screen.dart';
-import 'package:realstate/feature/auth/view/welcom_scree.dart';
+import 'package:realstate/common/constant/constant.dart';
+import 'package:realstate/feature/auth/presentation/ui/screen/welcom_scree.dart';
 import 'package:realstate/feature/base/view/base.dart';
+
+import '../widgets/top_image_auth.dart';
 
 class VerificationScreen extends StatefulWidget {
   static const path = 'verification';

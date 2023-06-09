@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:realstate/constant.dart';
+import 'package:realstate/common/constant/constant.dart';
 
 class NotificationScreen extends StatefulWidget {
   static const path = 'notification';

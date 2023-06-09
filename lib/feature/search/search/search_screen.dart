@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:realstate/common/app_widget/app_text_field.dart';
-import 'package:realstate/constant.dart';
+import 'package:realstate/common/constant/constant.dart';
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({Key? key}) : super(key: key);
@@ -26,36 +26,57 @@ class SearchScreen extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: kPage),
         child: Column(
           children: [
-            SizedBox(
-              height: 10,
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text("Recent",
-                    style: Theme.of(context)
-                        .textTheme
-                        .displaySmall
-                        ?.copyWith(color: Theme.of(context).colorScheme.primary, fontSize: 24)),
-                SizedBox(
-                  height: 40,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 10,
-                    itemBuilder: (context, index) => Container(
-                        padding: EdgeInsets.symmetric(horizontal: 8,vertical: 4),
-                        margin: EdgeInsets.symmetric(horizontal: 8),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            border: Border.all(color: Theme.of(context).colorScheme.outlineVariant)),
-                        child: Text("ee")),
-                  ),
-                )
-              ],
-            )
+            SizedBox(height: 10),
+            true
+                ? Expanded(
+                    child: ListView.builder(
+                      itemCount: 10,
+                      itemBuilder: (context, index) => Container(
+                          margin: EdgeInsets.all(8),
+                          height: 100, color: Colors.green),
+                    ),
+                  )
+                : Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("Recent",
+                          style: Theme.of(context)
+                              .textTheme
+                              .displaySmall
+                              ?.copyWith(color: Theme.of(context).colorScheme.primary, fontSize: 24)),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      SizedBox(
+                        height: 35,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: 10,
+                          itemBuilder: (context, index) => RecentSearch(),
+                        ),
+                      )
+                    ],
+                  )
           ],
         ),
       ),
     );
+  }
+}
+
+class RecentSearch extends StatelessWidget {
+  const RecentSearch({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+        margin: EdgeInsets.symmetric(horizontal: 8),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(color: Theme.of(context).colorScheme.outlineVariant.withOpacity(0.4))),
+        child: Text("ee"));
   }
 }
