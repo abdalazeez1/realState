@@ -4,7 +4,8 @@ class FormGroupKey {
   static const email = 'email';
   static const phone = 'phone';
   static const user = 'user';
-  static const name = 'name';
+  static const firstName = 'name';
+  static const lastName = 'last name';
   static const gender = 'gender';
   static const birthday = 'birthday';
   static const newPassword = 'newPassword';

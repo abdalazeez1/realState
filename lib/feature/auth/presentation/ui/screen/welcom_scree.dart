@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:realstate/common/constant/constant.dart';
 import 'package:realstate/feature/auth/presentation/ui/screen/signin_screen.dart';
 import 'package:realstate/feature/auth/presentation/ui/screen/signup_screen.dart';
 import 'package:realstate/feature/base/view/base.dart';
 
-import '../../../../../generated/assets.dart';
 import '../../../../splash/view/splash_screen.dart';
+import '../widgets/auth_button.dart';
 
 class WelcomeScreen extends StatefulWidget {
   static const path = '/welcome';
@@ -53,15 +52,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                           context.pushNamed(SignupScreen.name);
                         }),
                     const SizedBox(height: 10),
-                    // ElevatedButton(
-                    //   onPressed: () {},
-                    //   child: const Text('Continue with Google'),
-                    // ),
-                    // const SizedBox(height: 10),
-                    // ElevatedButton(
-                    //   onPressed: () {},
-                    //   child: const Text('Continue with Facebook'),
-                    // ),
                     const SizedBox(height: 20),
                     Text(
                       'Already have an account?',
@@ -113,33 +103,3 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   }
 }
 
-class AuthButton extends StatelessWidget {
-  const AuthButton({
-    super.key,
-    required this.text,
-    required this.func,
-  });
-
-  final String text;
-
-  final VoidCallback func;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          child: SizedBox(
-            height: 50,
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(16)))),
-              onPressed: func,
-              child: Text(text),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}

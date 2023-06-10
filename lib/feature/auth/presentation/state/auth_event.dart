@@ -4,4 +4,11 @@ part of 'auth_bloc.dart';
 abstract class AuthEvent {}
 
 class LoginAuth extends AuthEvent {}
+
 class SignUpAuth extends AuthEvent {}
+
+class VerifyRegisterAuth extends AuthEvent {
+  final String code ;
+
+  VerifyRegisterAuth({required this.code});
+}

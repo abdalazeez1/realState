@@ -47,7 +47,7 @@ class CustomStyleReactiveTextFiled extends StatelessWidget {
         keyboardType: keyboardType,
 
         fillColor: Theme.of(context).colorScheme.surfaceVariant,
-        maxLines: maxLine,
+        maxLines:(obscureText ?? false ) ? 1 : maxLine,
         hintStyle: Theme.of(context).textTheme.bodySmall?.copyWith(
             color:
             Theme.of(context).colorScheme.onSurfaceVariant),

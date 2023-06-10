@@ -25,4 +25,28 @@ class AuthRepoImpl implements IAuthRepo {
     });
   }
 
+  @override
+  Future<Result<ResponseWrapper<LoginResponse>>> logout({required ParamsWrapper paramsWrapper}) {
+    return toApiResult(() async {
+      final result = await _remote.logout();
+      return result;
+    });
+  }
+
+  @override
+  Future<Result<ResponseWrapper<LoginResponse>>> register({required ParamsWrapper paramsWrapper}) {
+    return toApiResult(() async {
+      final result = await _remote.register( paramsWrapper: paramsWrapper );
+      return result;
+    });
+  }
+
+  @override
+  Future<Result<ResponseWrapper<LoginResponse>>> verifyRegister({required ParamsWrapper paramsWrapper}) {
+    return toApiResult(() async {
+      final result = await _remote.verifyRegister( paramsWrapper: paramsWrapper );
+      return result;
+    });
+  }
+
 }

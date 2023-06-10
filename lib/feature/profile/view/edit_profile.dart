@@ -3,10 +3,10 @@ import 'package:go_router/go_router.dart';
 import 'package:realstate/common/app_widget/app_text_field.dart';
 import 'package:realstate/common/constant/constant.dart';
 import 'package:realstate/feature/add_ad/view/add_ad_screen.dart';
-import 'package:realstate/feature/auth/presentation/ui/screen/welcom_scree.dart';
 
 import '../../../common/app_widget/drop_down_menu.dart';
 import '../../add_ad/view/map_screen.dart';
+import '../../auth/presentation/ui/widgets/auth_button.dart';
 
 class EditProfileScreen extends StatelessWidget {
   const EditProfileScreen({Key? key}) : super(key: key);
@@ -22,10 +22,10 @@ class EditProfileScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: const Text("Edit Profile ")),
       body: ListView(padding: const EdgeInsets.symmetric(horizontal: kPage), children: [
-        AdSectionWidget(title: "FirstNAme", child: AppTextField(hintText: "FirstNAme")),
-        AdSectionWidget(title: "Last Name", child: AppTextField(hintText: "FirstNAme")),
-        AdSectionWidget(title: "Email", child: AppTextField(hintText: "FirstNAme")),
-        AdSectionWidget(title: "Phone", child: AppTextField(hintText: "FirstNAme")),
+        const AdSectionWidget(title: "FirstNAme", child: AppTextField(hintText: "FirstNAme")),
+        const AdSectionWidget(title: "Last Name", child: AppTextField(hintText: "FirstNAme")),
+        const AdSectionWidget(title: "Email", child: AppTextField(hintText: "FirstNAme")),
+        const AdSectionWidget(title: "Phone", child: AppTextField(hintText: "FirstNAme")),
         Row(
           children: [
             Expanded(
@@ -44,7 +44,7 @@ class EditProfileScreen extends StatelessWidget {
                 onSaved: (text) {},
               ),
             )),
-            SizedBox(width: 10),
+            const SizedBox(width: 10),
             Expanded(
                 child: AdSectionWidget(
               title: "Gender",
@@ -69,14 +69,14 @@ class EditProfileScreen extends StatelessWidget {
             onTap: () {
               context.pushNamed(MapScreen.name);
             },
-            child: AppTextField(
+            child: const AppTextField(
               enabled: false,
               prefixIcon: Icon(Icons.location_city),
               hintText: "Location",
             ),
           ),
         ),
-        SizedBox(height: 20,),
+        const SizedBox(height: 20,),
         AuthButton(text: "Submit", func: () {})
       ]),
     );

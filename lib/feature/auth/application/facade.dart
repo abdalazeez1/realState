@@ -12,7 +12,15 @@ class AuthFacade {
 
   AuthFacade({required IAuthRepo repo}) : _repo = repo;
 
-  Future<Future<Result<ResponseWrapper<LoginResponse>>>> login(
-          {required String email, required String password}) async =>
-      _repo.login(paramsWrapper: ParamsWrapper({"email": email, "password": password}));
+  Future<Result<ResponseWrapper<LoginResponse>>> login({required ParamsWrapper paramsWrapper}) async =>
+      _repo.login(paramsWrapper: paramsWrapper);
+
+  Future<Result<ResponseWrapper<LoginResponse>>> logout({required ParamsWrapper paramsWrapper}) async =>
+      _repo.logout(paramsWrapper: paramsWrapper);
+
+  Future<Result<ResponseWrapper<LoginResponse>>> register({required ParamsWrapper paramsWrapper}) async =>
+      _repo.register(paramsWrapper: paramsWrapper);
+
+  Future<Result<ResponseWrapper<LoginResponse>>> verifyRegister({required ParamsWrapper paramsWrapper}) async =>
+      _repo.verifyRegister(paramsWrapper: paramsWrapper);
 }

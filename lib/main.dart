@@ -1,12 +1,7 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:injectable/injectable.dart';
 import 'package:realstate/router/router.dart';
-
 import 'common/helper/dependencie_injection.dart';
-import 'common/service/http_client.dart';
-import 'feature/app.dart';
 
 void main() async{
   configureDependencies();

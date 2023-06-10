@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:realstate/common/constant/constant.dart';
 import 'package:realstate/common/helper/dependencie_injection.dart';
 import 'package:realstate/feature/auth/presentation/state/auth_bloc.dart';
-import 'package:realstate/feature/auth/presentation/ui/screen/welcom_scree.dart';
+import 'package:realstate/feature/auth/presentation/ui/screen/signup_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../../common/app_widget/app_text_field.dart';
 import '../../../../../common/app_widget/reactive_text_field.dart';
-import '../../../../../generated/assets.dart';
+import '../widgets/auth_button.dart';
 import '../widgets/top_image_auth.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -29,58 +27,75 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => getIt<AuthBloc>(),
-      child: Scaffold(
-        body: ReactiveForm(
-          formGroup: context.read<AuthBloc>().signInForm,
-          child: SafeArea(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: kPage),
+    return BlocProvider.value(
+      value: getIt<AuthBloc>(),
+      child: Builder(builder: (context) {
+        return SafeArea(
+          child: Scaffold(
+            bottomNavigationBar: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: kPage),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisSize: MainAxisSize.min,
                 children: [
-                  TopImageAuth(text: "Welcome Back"),
-                  Spacer(),
-                  SizedBox(height: 20),
-                  CustomStyleReactiveTextFiled(
-                    hintText: "Email",
-                    validationMessages: {
-                      ValidationMessage.required: (error) => "Required",
-                    },
-                    formControlName: FormGroupKey.email,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10),
-                    child: AppTextField(hintText: "Password", obscure: true, maxLines: 1),
-                  ),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: TextButton(
-                      onPressed: () {},
-                      child: Text('Forgot Password?'),
-                    ),
-                  ),
-                  Spacer(flex: 2),
                   AuthButton(text: "Login", func: () {}),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text("Don't have an account? "),
+                      const Text("Don't have an account? "),
                       TextButton(
-                        onPressed: () {},
-                        child: Text('Create New'),
+                        onPressed: () {
+                          context.pushNamed(SignupScreen.name);
+                        },
+                        child: const Text('Create New'),
                       ),
                     ],
                   ),
                 ],
               ),
             ),
+            body: ReactiveForm(
+              formGroup: context.read<AuthBloc>().signInForm,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: kPage),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    const TopImageAuth(text: "Welcome Back"),
+                    // const Spacer(),
+                    const SizedBox(height: 20),
+                    CustomStyleReactiveTextFiled(
+                      hintText: "Email",
+                      validationMessages: {
+                        ValidationMessage.required: (error) => "Required",
+                      },
+                      formControlName: FormGroupKey.email,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      child: CustomStyleReactiveTextFiled(
+                        hintText: "Password",
+                        validationMessages: {
+                          ValidationMessage.required: (error) => "Required",
+                        },
+                        formControlName: FormGroupKey.email,
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: TextButton(
+                        onPressed: () {},
+                        child: const Text('Forgot Password?'),
+                      ),
+                    ),
+                    // const Spacer(flex: 2),
+                  ],
+                ),
+              ),
+            ),
           ),
-        ),
-      ),
+        );
+      }),
     );
   }
 }
-

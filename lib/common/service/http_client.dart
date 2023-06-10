@@ -32,9 +32,9 @@ class DioClient with DioMixin implements Dio {
         'Content-Type': 'application/json; charset=UTF-8',
         'lang': "en",
       };
-    if (interceptors.isNotEmpty) {
-      interceptors.addAll(interceptors);
-    }
+    // if (interceptors.isNotEmpty) {
+    //   interceptors.addAll(interceptors);
+    // }
   }
 
   final String baseUrl;
