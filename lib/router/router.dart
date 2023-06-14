@@ -1,8 +1,8 @@
 import 'package:go_router/go_router.dart';
 import 'package:realstate/feature/splash/view/splash_screen.dart';
 
-import '../feature/add_ad/view/add_ad_screen.dart';
-import '../feature/add_ad/view/map_screen.dart';
+import '../feature/add_ad/view/screen/add_ad_screen.dart';
+import '../feature/add_ad/view/screen/map_screen.dart';
 import '../feature/auth/presentation/ui/screen/signin_screen.dart';
 import '../feature/auth/presentation/ui/screen/signup_screen.dart';
 import '../feature/auth/presentation/ui/screen/verification_screen.dart';

@@ -1,1 +1,4 @@
-enum TypeRealState { apartment, land, villa, market,farm }
+enum TypeRealState { apartment,
+  land,
+  villa, market,farm
+}

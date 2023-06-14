@@ -11,3 +11,6 @@ abstract class IAuthRepo {
   Future<Result<ResponseWrapper<LoginResponse>>> verifyRegister({required ParamsWrapper paramsWrapper}) ;
 
 }
+
+
+

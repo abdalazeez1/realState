@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:realstate/common/app_widget/app_text_field.dart';
 import 'package:realstate/common/constant/constant.dart';
-import 'package:realstate/feature/add_ad/view/add_ad_screen.dart';
+import 'package:realstate/feature/add_ad/view/screen/add_ad_screen.dart';
 
 import '../../../common/app_widget/drop_down_menu.dart';
-import '../../add_ad/view/map_screen.dart';
+import '../../add_ad/view/screen/map_screen.dart';
+import '../../add_ad/view/widget/ad_section.dart';
 import '../../auth/presentation/ui/widgets/auth_button.dart';
 
 class EditProfileScreen extends StatelessWidget {

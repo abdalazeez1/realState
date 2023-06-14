@@ -24,3 +24,4 @@ class AuthFacade {
   Future<Result<ResponseWrapper<LoginResponse>>> verifyRegister({required ParamsWrapper paramsWrapper}) async =>
       _repo.verifyRegister(paramsWrapper: paramsWrapper);
 }
+

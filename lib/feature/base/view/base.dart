@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:realstate/feature/profile/view/profile_screen.dart';
 import 'package:realstate/feature/search/search/search_screen.dart';
 
-import '../../add_ad/view/add_ad_screen.dart';
+import '../../add_ad/view/screen/add_ad_screen.dart';
 import '../../app.dart';
 
 class BasePage extends StatefulWidget {
