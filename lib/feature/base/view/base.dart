@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:realstate/feature/home/view/home_screen.dart';
 import 'package:realstate/feature/profile/view/profile_screen.dart';
 import 'package:realstate/feature/search/search/search_screen.dart';
 
 import '../../add_ad/view/add_ad_screen.dart';
 import '../../app.dart';
+import '../../favorite/view/favorite_screen.dart';
 
 class BasePage extends StatefulWidget {
   const BasePage({Key? key}) : super(key: key);
@@ -16,9 +18,9 @@ class BasePage extends StatefulWidget {
   }
 
   static final List<Widget> _widgetOptions = <Widget>[
-    const MyHomePage(),
+    const HomeScreen(),
     SearchScreen(),
-    const Text('Favourite Page'),
+    const FavoriteScreen(),
     ProfileScreen(),
   ];
 
@@ -38,11 +40,11 @@ class _BasePageState extends State<BasePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _selectedIndex == 3 || _selectedIndex == 1
+      /*appBar: _selectedIndex == 3 || _selectedIndex == 1
           ? null
           : AppBar(
               title: const Text('Bottom Navigation Bar Demo'),
-            ),
+            ),*/
       body: Center(
         child: BasePage._widgetOptions.elementAt(_selectedIndex),
       ),
