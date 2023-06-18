@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:realstate/feature/home/view/home_screen.dart';
-import 'package:realstate/feature/profile/view/profile_screen.dart';
 import 'package:realstate/feature/search/search/search_screen.dart';
 
-import '../../add_ad/view/screen/add_ad_screen.dart';
+import '../../add_ad/presentation/ui/screen/add_ad_screen.dart';
 import '../../app.dart';
 import '../../favorite/view/favorite_screen.dart';
+import '../../profile/presentation/ui/screens/profile_screen.dart';
 
 class BasePage extends StatefulWidget {
   const BasePage({Key? key}) : super(key: key);
@@ -19,9 +19,9 @@ class BasePage extends StatefulWidget {
 
   static final List<Widget> _widgetOptions = <Widget>[
     const HomeScreen(),
-    SearchScreen(),
+    const SearchScreen(),
     const FavoriteScreen(),
-    ProfileScreen(),
+    const ProfileScreen(),
   ];
 
   @override

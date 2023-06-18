@@ -17,7 +17,11 @@ class LandRealStateType extends StatelessWidget {
         Row(
           children: [EnterPriceWidget(), SizedBox(width: 20), ChoseLocationWidget()],
         ),
-        EnterSizeWidget(),
+        Row(
+          children: [
+            EnterSizeWidget(),
+          ],
+        ),
         SizedBox(height: 100),
       ],
     );

@@ -1,8 +1,14 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:fluttermoji/fluttermojiCircleAvatar.dart';
+import 'package:fluttermoji/fluttermojiCustomizer.dart';
+import 'package:fluttermoji/fluttermojiSaveWidget.dart';
+import 'package:fluttermoji/fluttermojiThemeData.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../common/constant/constant.dart';
-import '../../notification/view/notification.dart';
+import '../../../../../common/constant/constant.dart';
+import '../../../../notification/view/notification.dart';
 import 'edit_profile.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -172,26 +178,56 @@ class TopImageProfile extends StatelessWidget {
                 Stack(
                   alignment: Alignment.center,
                   children: [
-                    CircleAvatar(
-                      radius: 50,
-                      child: Align(
-                        alignment: Alignment.bottomRight,
-                        child: Container(
-                          width: 30,
-                          height: 30,
-                          decoration: BoxDecoration(
-                            color: Theme.of(context).colorScheme.secondary.withOpacity(0.4),
-                            shape: BoxShape.circle,
-                          ),
-                          child: IconButton(
-                            onPressed: () {
-                              // Add your edit profile logic here
-                            },
-                            icon: const FittedBox(child: Icon(Icons.edit)),
+                    Stack(
+                      children: [
+                        Center(
+                          child: FluttermojiCircleAvatar(
+                            backgroundColor: Colors.grey[200],
+                            radius: 50,
                           ),
                         ),
-                      ),
+                        Positioned(
+                            bottom: 0,
+                            right: -70,
+                            left: 0,
+                            child: Container(
+                              width: 30,
+                              height: 30,
+                              decoration: BoxDecoration(
+                                color: Theme.of(context).colorScheme.secondary.withOpacity(0.4),
+                                shape: BoxShape.circle,
+                              ),
+                              child: IconButton(
+                                onPressed: () {
+                                  Navigator.push(context,
+                                      new MaterialPageRoute(builder: (context) => NewPage()));
+                                  // Add your edit profile logic here
+                                },
+                                icon: const FittedBox(child: Icon(Icons.edit)),
+                              ),
+                            )),
+                      ],
                     ),
+                    // CircleAvatar(
+                    //   radius: 50,
+                    //   child: Align(
+                    //     alignment: Alignment.bottomRight,
+                    //     child: Container(
+                    //       width: 30,
+                    //       height: 30,
+                    //       decoration: BoxDecoration(
+                    //         color: Theme.of(context).colorScheme.secondary.withOpacity(0.4),
+                    //         shape: BoxShape.circle,
+                    //       ),
+                    //       child: IconButton(
+                    //         onPressed: () {
+                    //           // Add your edit profile logic here
+                    //         },
+                    //         icon: const FittedBox(child: Icon(Icons.edit)),
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
                   ],
                 ),
                 Text(
@@ -266,6 +302,59 @@ class ProfileButton extends StatelessWidget {
             if (leading != null) const Spacer(),
             if (leading != null) leading!,
           ],
+        ),
+      ),
+    );
+  }
+}
+
+
+
+class NewPage extends StatelessWidget {
+  const NewPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    var _width = MediaQuery.of(context).size.width;
+    return Scaffold(
+      appBar: AppBar(),
+      body: Center(
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 30),
+                child: FluttermojiCircleAvatar(
+                  radius: 100,
+                  backgroundColor: Colors.grey[200],
+                ),
+              ),
+              SizedBox(
+                width: min(600, _width * 0.85),
+                child: Row(
+                  children: [
+                    Text(
+                      "Customize:",
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
+                    Spacer(),
+                    FluttermojiSaveWidget(),
+                  ],
+                ),
+              ),
+              Padding(
+                padding:
+                const EdgeInsets.symmetric(horizontal: 8.0, vertical: 30),
+                child: FluttermojiCustomizer(
+                  scaffoldWidth: min(600, _width * 0.85),
+                  autosave: false,
+                  theme: FluttermojiThemeData(
+                      boxDecoration: BoxDecoration(boxShadow: [BoxShadow()])),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

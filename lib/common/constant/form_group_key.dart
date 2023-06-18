@@ -14,6 +14,15 @@ class FormGroupKey {
   static const password = 'password';
   static const search = 'search';
   static const city = 'city';
+  static const playGround = 'play_ground';
+  static const realStateType = 'real_state_type';
+  static const swimmingPool = 'swimming_pool';
+  static const storeHouse = 'store_house';
+  static const section = 'section';
+  static const rooms = 'rooms';
+  static const garden = 'garden';
+  static const country = 'country';
+  static const floor = 'floor';
   static const street = 'street';
   static const locality = 'locality';
   static const postalCode = 'postalCode';
@@ -25,5 +34,10 @@ class FormGroupKey {
   static const state = 'state';
   static const description = 'description';
   static const title = 'title';
+  static const price = 'price';
+  static const size = 'size';
   static const refund = 'refund';
+    static const adType = 'adType';
+    static const direction = 'direction';
+    static const specification = 'specification';
 }

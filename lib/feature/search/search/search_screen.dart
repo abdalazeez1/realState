@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:realstate/common/app_widget/app_text_field.dart';
 import 'package:realstate/common/constant/constant.dart';
+import 'package:realstate/feature/home/view/card_home.dart';
+
+import '../../favorite/view/fav_card.dart';
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({Key? key}) : super(key: key);
@@ -31,9 +34,7 @@ class SearchScreen extends StatelessWidget {
                 ? Expanded(
                     child: ListView.builder(
                       itemCount: 10,
-                      itemBuilder: (context, index) => Container(
-                          margin: EdgeInsets.all(8),
-                          height: 100, color: Colors.green),
+                      itemBuilder: (context, index) => CardFavorite(),
                     ),
                   )
                 : Column(

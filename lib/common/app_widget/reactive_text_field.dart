@@ -31,22 +31,21 @@ class CustomStyleReactiveTextFiled extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: decoration ??
-          BoxDecoration(boxShadow: [
-            BoxShadow(
-              offset: const Offset(0, 4),
-              blurRadius: 10,
-              color: Colors.black.withOpacity(.05),
-            ),
-          ]),
+      // decoration: decoration ??
+      //     BoxDecoration(boxShadow: [
+      //       BoxShadow(
+      //         offset: const Offset(0, 4),
+      //         blurRadius: 10,
+      //         color: Colors.black.withOpacity(.05),
+      //       ),
+      //     ]),
       child: CustomReactiveTextField(
         obscureText: obscureText,
 
         labelText: labelText,
         hintText: hintText,
         keyboardType: keyboardType,
-
-        fillColor: Theme.of(context).colorScheme.surfaceVariant,
+        fillColor: Theme.of(context).colorScheme.outline.withOpacity((0.05)),
         maxLines:(obscureText ?? false ) ? 1 : maxLine,
         hintStyle: Theme.of(context).textTheme.bodySmall?.copyWith(
             color:

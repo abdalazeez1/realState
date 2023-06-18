@@ -1,15 +1,15 @@
 import 'package:go_router/go_router.dart';
 import 'package:realstate/feature/splash/view/splash_screen.dart';
 
-import '../feature/add_ad/view/screen/add_ad_screen.dart';
-import '../feature/add_ad/view/screen/map_screen.dart';
+import '../feature/add_ad/presentation/ui/screen/add_ad_screen.dart';
+import '../feature/add_ad/presentation/ui/screen/map_screen.dart';
 import '../feature/auth/presentation/ui/screen/signin_screen.dart';
 import '../feature/auth/presentation/ui/screen/signup_screen.dart';
 import '../feature/auth/presentation/ui/screen/verification_screen.dart';
 import '../feature/auth/presentation/ui/screen/welcom_scree.dart';
 import '../feature/base/view/base.dart';
 import '../feature/notification/view/notification.dart';
-import '../feature/profile/view/edit_profile.dart';
+import '../feature/profile/presentation/ui/screens/edit_profile.dart';
 
 final GoRouter router = GoRouter(routes: <RouteBase>[
   ///Splash

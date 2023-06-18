@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../chose_widget/chose_room.dart';
 import '../widegt.dart';
 
 class AppartmentRealStateType extends StatelessWidget {
@@ -9,7 +10,7 @@ class AppartmentRealStateType extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return  Column(
       children: [
         ChoseCityWidget(),
         ChoseDirectionWidget(),
