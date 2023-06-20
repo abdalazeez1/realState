@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:realstate/common/network/exceptions/exceptions.dart';
+import 'package:realstate/common/theme/typography.dart';
 import 'package:realstate/feature/home/view/features_home.dart';
 
 class CardHome extends StatelessWidget {
@@ -14,7 +16,7 @@ class CardHome extends StatelessWidget {
       child: Card(
         margin: REdgeInsetsDirectional.only(bottom: 25),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        color: Colors.white,
+        color: context.colorScheme.onPrimary,
         child: Column(
           children: [
             ClipRRect(
@@ -35,12 +37,12 @@ class CardHome extends StatelessWidget {
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         // elevation: 8,
-                        backgroundColor: Colors.white70,
-                        shadowColor: Colors.white,
+                        backgroundColor: context.colorScheme.onPrimary.withOpacity(0.7),
+                        shadowColor: context.colorScheme.onPrimary,
                         shape: CircleBorder(),
                       ),
                       onPressed: () {},
-                      child: Icon(Icons.bookmark, color: Colors.blueAccent),
+                      child: Icon(Icons.bookmark, color: context.colorScheme.primary),
                     ),
                   )
                 ],
@@ -60,10 +62,9 @@ class CardHome extends StatelessWidget {
                             children: [
                               Text(
                                 "Modern Family House",
-                                style: Theme.of(context)
+                                style: context
                                     .textTheme
-                                    .titleMedium!
-                                    .copyWith(fontWeight: FontWeight.bold),
+                                    .titleMedium!.b,
                               ),
                               5.verticalSpace,
                               Row(
@@ -75,10 +76,7 @@ class CardHome extends StatelessWidget {
                                   ),
                                   Text(
                                     'Los Angels, USA',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .labelSmall!
-                                        .copyWith(color: Colors.grey, fontSize: 10.sp),
+                                    style: context.textTheme.bodySmall!.copyWith(color: context.colorScheme.outline),
                                   ),
                                   17.horizontalSpace,
                                   Icon(
@@ -89,10 +87,7 @@ class CardHome extends StatelessWidget {
                                   6.horizontalSpace,
                                   Text(
                                     '4,8',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .labelSmall!
-                                        .copyWith(color: Colors.grey, fontSize: 10.sp),
+                                    style: context.textTheme.bodySmall!.copyWith(color: context.colorScheme.outline),
                                   )
                                 ],
                               ),
@@ -100,9 +95,10 @@ class CardHome extends StatelessWidget {
                           ),
                           VerticalDivider(color: Colors.grey, width: 10.w, thickness: 1),
                           RichText(
+                            textAlign: TextAlign.center,
                             text: TextSpan(
                                 text: 'Price\n',
-                                style: Theme.of(context).textTheme.labelMedium,
+                                style: context.textTheme.bodyMedium,
                                 children: [
                                   WidgetSpan(
                                       child: SizedBox(
@@ -110,10 +106,7 @@ class CardHome extends StatelessWidget {
                                   )),
                                   TextSpan(
                                       text: '\$230',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .labelMedium!
-                                          .copyWith(color: Colors.blue)),
+                                      style: context.textTheme.bodyLarge!.xb.copyWith(color: context.colorScheme.primary)),
                                 ]),
                           ),
                         ],

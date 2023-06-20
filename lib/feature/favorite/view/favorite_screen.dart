@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:realstate/common/network/exceptions/exceptions.dart';
+import 'package:realstate/common/theme/typography.dart';
 
 import 'fav_card.dart';
 
@@ -13,17 +15,17 @@ class FavoriteScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           'Favorite',
-          style: Theme.of(context)
+          style: context
               .textTheme
-              .headlineSmall!
-              .copyWith(color: Colors.white, fontWeight: FontWeight.bold),
+              .headlineSmall!.b
+              .copyWith(color:context.colorScheme.onPrimary ),
         ),
         centerTitle: true,
         toolbarHeight: 70.h,
-        backgroundColor: CupertinoColors.systemBlue,
+        backgroundColor: context.colorScheme.primary,
         leading: Icon(
           Icons.arrow_back_ios,
-          color: Colors.white,
+          color: context.colorScheme.onPrimary,
           size: 20.r,
         ),
         actions: [
@@ -31,14 +33,14 @@ class FavoriteScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 15.0),
             child: Icon(
               Icons.tune,
-              color: Colors.white,
+              color: context.colorScheme.onPrimary,
               size: 20.r,
             ),
           )
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15.0,vertical: 15),
+        padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 15),
         child: ListView.builder(itemBuilder: (context, index) => const CardFavorite(),itemCount: 10),
       ),
     );

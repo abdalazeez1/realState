@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:realstate/common/network/exceptions/exceptions.dart';
+import 'package:realstate/common/theme/typography.dart';
 
 class Featureshome extends StatelessWidget {
   const Featureshome({
@@ -10,7 +12,7 @@ class Featureshome extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         margin: REdgeInsetsDirectional.only(top: 12,bottom: 12,end: 20),
-        decoration: BoxDecoration(color: Colors.blue, borderRadius: BorderRadius.circular(10.r)),
+        decoration: BoxDecoration(color: context.colorScheme.primary, borderRadius: BorderRadius.circular(10.r)),
         height: 40.h,
         width: 40.w,
         child: Column(
@@ -18,15 +20,12 @@ class Featureshome extends StatelessWidget {
           children: [
             Icon(
               Icons.wifi,
-              color: Colors.white,
+              color: context.colorScheme.onPrimary,
               size: 15.r,
             ),
             Text(
               'Wifi',
-              style: Theme.of(context)
-                  .textTheme
-                  .labelSmall!
-                  .copyWith(color: Colors.white, fontSize: 8.sp),
+              style: context.textTheme.bodySmall!.m.copyWith(color: context.colorScheme.onPrimary),
             )
           ],
         ));

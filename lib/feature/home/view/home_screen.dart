@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:realstate/common/app_widget/app_text_field.dart';
+import 'package:realstate/common/network/exceptions/exceptions.dart';
+import 'package:realstate/common/theme/typography.dart';
 import 'package:realstate/feature/home/view/custome_chip.dart';
 
 import 'card_home.dart';
@@ -17,7 +19,8 @@ class HomeScreen extends StatelessWidget {
         child: CustomScrollView(
           slivers: [
             SliverAppBar(
-              surfaceTintColor: Colors.white,
+              backgroundColor: context.colorScheme.background,
+              // surfaceTintColor: context.colorScheme.onPrimary,
               toolbarHeight: 90.h,
               pinned: true,
               title: Padding(
@@ -26,11 +29,10 @@ class HomeScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('Find Your \nBest Place to Stay',
-                        style: Theme.of(context)
-                            .textTheme
-                            .headlineSmall!
-                            .copyWith(fontWeight: FontWeight.bold, color: Color(0xff3C77C0))),
-                    Icon(Icons.notifications_none_outlined, color: Color(0xff3C77C0), size: 30.r),
+                        style: context.textTheme.headlineSmall!.xb
+                            .copyWith(color: context.colorScheme.primary)),
+                    Icon(Icons.notifications_none_outlined,
+                        color: context.colorScheme.primary, size: 30.r),
                   ],
                 ),
               ),
@@ -40,7 +42,7 @@ class HomeScreen extends StatelessWidget {
                     elevation: 5,
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.r)),
                     child: AppTextField(
-                      borderColor: Colors.white,
+                      borderColor: context.colorScheme.background,
                       filled: false,
                       prefixIcon: IconButton(
                         icon: Icon(
@@ -52,7 +54,7 @@ class HomeScreen extends StatelessWidget {
                       suffixIcon: IconButton(
                         icon: Icon(
                           Icons.tune,
-                          color: Color(0xff3C77C0),
+                          color: context.colorScheme.primary,
                         ),
                         onPressed: () {},
                       ),
@@ -62,14 +64,12 @@ class HomeScreen extends StatelessWidget {
                   )),
             ),
             SliverAppBar(
-              surfaceTintColor: Colors.white,
-              shadowColor: Colors.white,
+              backgroundColor: context.colorScheme.background,
               title: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 child: Text(
                   'Categories',
-                  style:
-                      Theme.of(context).textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.bold),
+                  style: context.textTheme.titleSmall!.xb,
                 ),
               ),
               centerTitle: false,
@@ -87,7 +87,7 @@ class HomeScreen extends StatelessWidget {
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
                         itemBuilder: (context, index) => Padding(
-                          padding:  REdgeInsetsDirectional.only(end: 8.0),
+                          padding: REdgeInsetsDirectional.only(end: 8.0),
                           child: CustomeChip(text: 'lable$index', image: 'assets/images/house.png'),
                         ),
                         itemCount: 10,
@@ -97,10 +97,7 @@ class HomeScreen extends StatelessWidget {
                       padding: REdgeInsetsDirectional.only(top: 10, bottom: 7),
                       child: Text(
                         'Nearby for you',
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyLarge!
-                            .copyWith(fontWeight: FontWeight.bold),
+                        style: context.textTheme.titleSmall!.xb,
                       ),
                     ),
                   ],

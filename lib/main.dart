@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:realstate/common/theme/app_theme.dart';
 import 'package:realstate/router/router.dart';
 import 'common/helper/dependencie_injection.dart';
 
@@ -23,10 +24,7 @@ class MyApp extends StatelessWidget {
         return MaterialApp.router(
           routerConfig: router,
           title: 'Flutter Demo',
-          theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-            useMaterial3: true,
-          ),
+          theme: getAppTheme( ThemeMode.light, context),
         );
       },
     );
