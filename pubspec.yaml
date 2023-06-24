@@ -50,6 +50,8 @@ dependencies:
 #model
   freezed: ^2.3.5
   freezed_annotation: ^2.2.0
+  smooth_page_indicator: ^1.1.0
+  carousel_slider: ^4.2.1
 
 dev_dependencies:
   flutter_test:

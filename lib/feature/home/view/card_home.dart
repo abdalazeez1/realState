@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:realstate/feature/home/view/features_home.dart';
 
+import '../../ad_details  /presentation/ui/screens/ad_detalis.dart';
+
 class CardHome extends StatelessWidget {
   const CardHome({Key? key}) : super(key: key);
 
@@ -9,7 +11,9 @@ class CardHome extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        //todo moneir go to detail card
+        Navigator.of(context).push(MaterialPageRoute(builder: (ctx) {
+          return Demo();
+        }));
       },
       child: Card(
         margin: REdgeInsetsDirectional.only(bottom: 25),
@@ -78,7 +82,9 @@ class CardHome extends StatelessWidget {
                                     style: Theme.of(context)
                                         .textTheme
                                         .labelSmall!
-                                        .copyWith(color: Colors.grey, fontSize: 10.sp),
+                                        .copyWith(
+                                            color: Colors.grey,
+                                            fontSize: 10.sp),
                                   ),
                                   17.horizontalSpace,
                                   Icon(
@@ -92,13 +98,16 @@ class CardHome extends StatelessWidget {
                                     style: Theme.of(context)
                                         .textTheme
                                         .labelSmall!
-                                        .copyWith(color: Colors.grey, fontSize: 10.sp),
+                                        .copyWith(
+                                            color: Colors.grey,
+                                            fontSize: 10.sp),
                                   )
                                 ],
                               ),
                             ],
                           ),
-                          VerticalDivider(color: Colors.grey, width: 10.w, thickness: 1),
+                          VerticalDivider(
+                              color: Colors.grey, width: 10.w, thickness: 1),
                           RichText(
                             text: TextSpan(
                                 text: 'Price\n',
