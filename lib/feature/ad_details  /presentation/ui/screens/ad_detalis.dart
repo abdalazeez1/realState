@@ -65,7 +65,9 @@ class _DemoState extends State<Demo> {
                             .withOpacity(.5),
                       ),
                       child: TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
                         child: const Icon(
                           Icons.chevron_left,
                           color: Colors.white,
