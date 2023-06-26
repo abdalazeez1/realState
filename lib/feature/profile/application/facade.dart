@@ -12,7 +12,7 @@ class ProfileFacade {
 
   ProfileFacade({required IProfileRepo repo}) : _repo = repo;
 
-  Future<Result<ResponseWrapper<Profile>>> profile({required ParamsWrapper paramsWrapper}) async =>
-      _repo.profile(paramsWrapper: paramsWrapper);
+  Future<Result<ResponseWrapper<Profile>>> profile() async =>
+      _repo.profile();
 
  }

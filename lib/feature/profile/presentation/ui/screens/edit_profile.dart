@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:realstate/common/app_widget/app_text_field.dart';
 import 'package:realstate/common/constant/constant.dart';
+import 'package:realstate/common/helper/dependencie_injection.dart';
 import 'package:realstate/feature/add_ad/presentation/ui/screen/add_ad_screen.dart';
 import 'package:realstate/feature/profile/presentation/state/profile_bloc.dart';
 
@@ -26,7 +27,7 @@ class EditProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ProfileBloc(),
+      create: (context) => getIt<ProfileBloc>(),
       child: Builder(builder: (context) {
         return ReactiveForm(
           formGroup: context.read<ProfileBloc>().formGroup,

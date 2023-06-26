@@ -79,12 +79,12 @@ class LoggerInterceptor extends Interceptor  with LoggerHelper {
     if (data != null && data != "") {
       if (data is Map<String, dynamic>) {
         showMessage(
-          ErrorModel.fromJson(data).errorMessage ?? '',
+          ErrorModel.fromJson(data).message ?? '',
           hasError: true,
         );
       }else{
         showMessage(
-          ErrorModel.fromJson(jsonDecode(data!)).errorMessage ?? '',
+          ErrorModel.fromJson(jsonDecode(data!)).message ?? '',
           hasError: true,
         );
       }

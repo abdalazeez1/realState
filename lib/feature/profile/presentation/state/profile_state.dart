@@ -1,6 +1,14 @@
 part of 'profile_bloc.dart';
 
 @immutable
-abstract class ProfileState {}
+ class ProfileState {
+  final PageState<Profile> profileStatus ;
 
-class ProfileInitial extends ProfileState {}
+  const ProfileState({this.profileStatus = const PageState.init()});
+
+
+  ProfileState copyWith({ PageState<Profile>? profileStatus})=>ProfileState(
+    profileStatus: profileStatus ?? this.profileStatus
+  );
+}
+

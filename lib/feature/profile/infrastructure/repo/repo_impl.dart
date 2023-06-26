@@ -19,9 +19,9 @@ class ProfileRepoImpl implements IProfileRepo {
 
 
   @override
-  Future<Result<ResponseWrapper<Profile>>> profile({required ParamsWrapper paramsWrapper}) {
+  Future<Result<ResponseWrapper<Profile>>> profile() {
     return toApiResult(() async {
-      final result = await _remote.profile( paramsWrapper: paramsWrapper );
+      final result = await _remote.profile(  );
       return result;
     });
   }

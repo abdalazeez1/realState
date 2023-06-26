@@ -5,6 +5,6 @@ import '../../../../common/network/result.dart';
 import '../../infrastructure/model/profile.dart';
 
 abstract class IProfileRepo {
-  Future<Result<ResponseWrapper<Profile>>> profile({required ParamsWrapper paramsWrapper}) ;
+  Future<Result<ResponseWrapper<Profile>>> profile() ;
 
 }

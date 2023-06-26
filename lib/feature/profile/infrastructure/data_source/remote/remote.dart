@@ -13,10 +13,10 @@ class ProfileRemote {
 
   ProfileRemote(this._dio);
 
-  Future<ResponseWrapper<Profile>> profile({required ParamsWrapper paramsWrapper}) async {
+  Future<ResponseWrapper<Profile>> profile() async {
     return throwAppException(
       () async {
-        final response = await _dio.get("APIRoutes", queryParameters: paramsWrapper.params);
+        final response = await _dio.get(APIRoutes.auth.profile, );
         return ResponseWrapper.fromJson(response.data, (json) => Profile());
       },
     );

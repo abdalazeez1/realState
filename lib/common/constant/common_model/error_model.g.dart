@@ -8,12 +8,15 @@ part of 'error_model.dart';
 
 _$_ErrorModel _$$_ErrorModelFromJson(Map<String, dynamic> json) =>
     _$_ErrorModel(
-      statusCode: json['statusCode'] as int?,
-      errorMessage: json['errorMessage'] as String?,
+      message: json['message'] as String?,
+      success: json['success'] as bool?,
+      errors:
+          (json['errors'] as List<dynamic>?)?.map((e) => e as String).toList(),
     );
 
 Map<String, dynamic> _$$_ErrorModelToJson(_$_ErrorModel instance) =>
     <String, dynamic>{
-      'statusCode': instance.statusCode,
-      'errorMessage': instance.errorMessage,
+      'message': instance.message,
+      'success': instance.success,
+      'errors': instance.errors,
     };

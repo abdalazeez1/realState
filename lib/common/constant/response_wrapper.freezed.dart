@@ -22,7 +22,7 @@ ResponseWrapper<T> _$ResponseWrapperFromJson<T>(
 /// @nodoc
 mixin _$ResponseWrapper<T> {
   String? get status => throw _privateConstructorUsedError;
-  T? get data => throw _privateConstructorUsedError;
+  T get data => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson(Object? Function(T) toJsonT) =>
       throw _privateConstructorUsedError;
@@ -37,7 +37,7 @@ abstract class $ResponseWrapperCopyWith<T, $Res> {
           ResponseWrapper<T> value, $Res Function(ResponseWrapper<T>) then) =
       _$ResponseWrapperCopyWithImpl<T, $Res, ResponseWrapper<T>>;
   @useResult
-  $Res call({String? status, T? data});
+  $Res call({String? status, T data});
 }
 
 /// @nodoc
@@ -64,7 +64,7 @@ class _$ResponseWrapperCopyWithImpl<T, $Res, $Val extends ResponseWrapper<T>>
       data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as T?,
+              as T,
     ) as $Val);
   }
 }
@@ -77,7 +77,7 @@ abstract class _$$_ResponseWrapperCopyWith<T, $Res>
       __$$_ResponseWrapperCopyWithImpl<T, $Res>;
   @override
   @useResult
-  $Res call({String? status, T? data});
+  $Res call({String? status, T data});
 }
 
 /// @nodoc
@@ -102,7 +102,7 @@ class __$$_ResponseWrapperCopyWithImpl<T, $Res>
       data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as T?,
+              as T,
     ));
   }
 }
@@ -112,7 +112,7 @@ class __$$_ResponseWrapperCopyWithImpl<T, $Res>
 class _$_ResponseWrapper<T>
     with DiagnosticableTreeMixin
     implements _ResponseWrapper<T> {
-  const _$_ResponseWrapper({this.status, this.data});
+  const _$_ResponseWrapper({this.status, required this.data});
 
   factory _$_ResponseWrapper.fromJson(
           Map<String, dynamic> json, T Function(Object?) fromJsonT) =>
@@ -121,7 +121,7 @@ class _$_ResponseWrapper<T>
   @override
   final String? status;
   @override
-  final T? data;
+  final T data;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -165,8 +165,8 @@ class _$_ResponseWrapper<T>
 }
 
 abstract class _ResponseWrapper<T> implements ResponseWrapper<T> {
-  const factory _ResponseWrapper({final String? status, final T? data}) =
-      _$_ResponseWrapper<T>;
+  const factory _ResponseWrapper(
+      {final String? status, required final T data}) = _$_ResponseWrapper<T>;
 
   factory _ResponseWrapper.fromJson(
           Map<String, dynamic> json, T Function(Object?) fromJsonT) =
@@ -175,7 +175,7 @@ abstract class _ResponseWrapper<T> implements ResponseWrapper<T> {
   @override
   String? get status;
   @override
-  T? get data;
+  T get data;
   @override
   @JsonKey(ignore: true)
   _$$_ResponseWrapperCopyWith<T, _$_ResponseWrapper<T>> get copyWith =>

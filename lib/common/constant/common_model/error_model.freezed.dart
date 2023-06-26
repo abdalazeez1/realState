@@ -20,8 +20,9 @@ ErrorModel _$ErrorModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ErrorModel {
-  int? get statusCode => throw _privateConstructorUsedError;
-  String? get errorMessage => throw _privateConstructorUsedError;
+  String? get message => throw _privateConstructorUsedError;
+  bool? get success => throw _privateConstructorUsedError;
+  List<String>? get errors => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +36,7 @@ abstract class $ErrorModelCopyWith<$Res> {
           ErrorModel value, $Res Function(ErrorModel) then) =
       _$ErrorModelCopyWithImpl<$Res, ErrorModel>;
   @useResult
-  $Res call({int? statusCode, String? errorMessage});
+  $Res call({String? message, bool? success, List<String>? errors});
 }
 
 /// @nodoc
@@ -51,18 +52,23 @@ class _$ErrorModelCopyWithImpl<$Res, $Val extends ErrorModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? statusCode = freezed,
-    Object? errorMessage = freezed,
+    Object? message = freezed,
+    Object? success = freezed,
+    Object? errors = freezed,
   }) {
     return _then(_value.copyWith(
-      statusCode: freezed == statusCode
-          ? _value.statusCode
-          : statusCode // ignore: cast_nullable_to_non_nullable
-              as int?,
-      errorMessage: freezed == errorMessage
-          ? _value.errorMessage
-          : errorMessage // ignore: cast_nullable_to_non_nullable
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
               as String?,
+      success: freezed == success
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      errors: freezed == errors
+          ? _value.errors
+          : errors // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
     ) as $Val);
   }
 }
@@ -75,7 +81,7 @@ abstract class _$$_ErrorModelCopyWith<$Res>
       __$$_ErrorModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? statusCode, String? errorMessage});
+  $Res call({String? message, bool? success, List<String>? errors});
 }
 
 /// @nodoc
@@ -89,18 +95,23 @@ class __$$_ErrorModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? statusCode = freezed,
-    Object? errorMessage = freezed,
+    Object? message = freezed,
+    Object? success = freezed,
+    Object? errors = freezed,
   }) {
     return _then(_$_ErrorModel(
-      statusCode: freezed == statusCode
-          ? _value.statusCode
-          : statusCode // ignore: cast_nullable_to_non_nullable
-              as int?,
-      errorMessage: freezed == errorMessage
-          ? _value.errorMessage
-          : errorMessage // ignore: cast_nullable_to_non_nullable
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
               as String?,
+      success: freezed == success
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      errors: freezed == errors
+          ? _value._errors
+          : errors // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
     ));
   }
 }
@@ -108,19 +119,29 @@ class __$$_ErrorModelCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_ErrorModel implements _ErrorModel {
-  const _$_ErrorModel({this.statusCode, this.errorMessage});
+  const _$_ErrorModel({this.message, this.success, final List<String>? errors})
+      : _errors = errors;
 
   factory _$_ErrorModel.fromJson(Map<String, dynamic> json) =>
       _$$_ErrorModelFromJson(json);
 
   @override
-  final int? statusCode;
+  final String? message;
   @override
-  final String? errorMessage;
+  final bool? success;
+  final List<String>? _errors;
+  @override
+  List<String>? get errors {
+    final value = _errors;
+    if (value == null) return null;
+    if (_errors is EqualUnmodifiableListView) return _errors;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'ErrorModel(statusCode: $statusCode, errorMessage: $errorMessage)';
+    return 'ErrorModel(message: $message, success: $success, errors: $errors)';
   }
 
   @override
@@ -128,15 +149,15 @@ class _$_ErrorModel implements _ErrorModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ErrorModel &&
-            (identical(other.statusCode, statusCode) ||
-                other.statusCode == statusCode) &&
-            (identical(other.errorMessage, errorMessage) ||
-                other.errorMessage == errorMessage));
+            (identical(other.message, message) || other.message == message) &&
+            (identical(other.success, success) || other.success == success) &&
+            const DeepCollectionEquality().equals(other._errors, _errors));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, statusCode, errorMessage);
+  int get hashCode => Object.hash(runtimeType, message, success,
+      const DeepCollectionEquality().hash(_errors));
 
   @JsonKey(ignore: true)
   @override
@@ -154,15 +175,19 @@ class _$_ErrorModel implements _ErrorModel {
 
 abstract class _ErrorModel implements ErrorModel {
   const factory _ErrorModel(
-      {final int? statusCode, final String? errorMessage}) = _$_ErrorModel;
+      {final String? message,
+      final bool? success,
+      final List<String>? errors}) = _$_ErrorModel;
 
   factory _ErrorModel.fromJson(Map<String, dynamic> json) =
       _$_ErrorModel.fromJson;
 
   @override
-  int? get statusCode;
+  String? get message;
   @override
-  String? get errorMessage;
+  bool? get success;
+  @override
+  List<String>? get errors;
   @override
   @JsonKey(ignore: true)
   _$$_ErrorModelCopyWith<_$_ErrorModel> get copyWith =>

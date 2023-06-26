@@ -1,13 +1,19 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttermoji/fluttermojiCircleAvatar.dart';
 import 'package:fluttermoji/fluttermojiCustomizer.dart';
 import 'package:fluttermoji/fluttermojiSaveWidget.dart';
 import 'package:fluttermoji/fluttermojiThemeData.dart';
 import 'package:go_router/go_router.dart';
+import 'package:realstate/common/app_widget/app_state_widget/app_state_widget.dart';
+import 'package:realstate/common/helper/dependencie_injection.dart';
+import 'package:realstate/feature/profile/infrastructure/model/profile.dart';
+import 'package:realstate/feature/profile/presentation/state/profile_bloc.dart';
 
 import '../../../../../common/constant/constant.dart';
+import '../../../../../common/network/page_state/result_builder.dart';
 import '../../../../notification/view/notification.dart';
 import 'edit_profile.dart';
 
@@ -16,101 +22,116 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          const TopImageProfile(),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: kPage + 8),
-            child: Center(
-              child: Text(
-                'Email: john.doe@example.com',
-                style: Theme.of(context).textTheme.labelSmall,
-              ),
-            ),
+    return BlocProvider(
+      create: (context) => getIt<ProfileBloc>()..add(GetProfile()),
+      child: Builder(builder: (context) {
+        return Scaffold(
+          body: BlocBuilder<ProfileBloc, ProfileState>(
+            builder: (context, state) {
+              return PageStateBuilder<Profile>(
+                            init: () => const SizedBox(),
+                            success: (data) => Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                const TopImageProfile(),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(vertical: 20, horizontal: kPage + 8),
+                                  child: Center(
+                                    child: Text(
+                                      'Email: john.doe@example.com',
+                                      style: Theme.of(context).textTheme.labelSmall,
+                                    ),
+                                  ),
+                                ),
+                                // // Cards Section
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: kPage),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                                    children: [
+                                      BorderStyleProfile(
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                            children: [
+                                              ProfileButton(
+                                                isTop: true,
+                                                icon: Icons.person,
+                                                label: 'Edit Profile Information',
+                                                onTap: () {
+                                                  context.goNamed(EditProfileScreen.name);
+                                                  // Add your edit profile information logic here
+                                                },
+                                              ),
+                                              ProfileButton(
+                                                icon: Icons.notifications,
+                                                label: 'Notification',
+                                                onTap: () {
+                                                  context.pushNamed(NotificationScreen.name);
+                                                  // Add your notification logic here
+                                                },
+                                              ),
+                                              ProfileButton(
+                                                icon: Icons.language,
+                                                label: 'Language',
+                                                onTap: () {
+                                                  // Add your language selection logic here
+                                                },
+                                              ),
+                                            ],
+                                          )),
+                                      const SizedBox(height: 20),
+                                      // Theme Section
+                                      BorderStyleProfile(
+                                        child: ProfileButton(
+                                          leading: Transform.scale(
+                                              scale: 0.8,
+                                              child: Switch(
+                                                value: true,
+                                                onChanged: (v) {},
+                                              )),
+                                          isTop: true,
+                                          icon: Icons.color_lens,
+                                          label: 'Theme',
+                                          onTap: () {
+                                            // Add your edit profile information logic here
+                                          },
+                                        ),
+                                      ),
+                                      const SizedBox(height: 20),
+                                      BorderStyleProfile(
+                                        child: Column(
+                                          children: [
+                                            ProfileButton(
+                                              isTop: true,
+                                              icon: Icons.security,
+                                              label: 'Security',
+                                              onTap: () {
+                                                // Add your edit profile information logic here
+                                              },
+                                            ),
+                                            ProfileButton(
+                                              icon: Icons.lock,
+                                              label: 'Privacy Policy',
+                                              onTap: () {
+                                                // Add your edit profile information logic here
+                                              },
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            loading: () => AppStateWidget.loading(),
+                            error: (exception ,error) => AppStateWidget.error(),
+                            result: state.profileStatus,
+                            empty: () => const SizedBox());
+            },
           ),
-          // // Cards Section
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: kPage),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                BorderStyleProfile(
-                    child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    ProfileButton(
-                      isTop: true,
-                      icon: Icons.person,
-                      label: 'Edit Profile Information',
-                      onTap: () {
-                        context.goNamed(EditProfileScreen.name);
-                        // Add your edit profile information logic here
-                      },
-                    ),
-                    ProfileButton(
-                      icon: Icons.notifications,
-                      label: 'Notification',
-                      onTap: () {
-                        context.pushNamed(NotificationScreen.name);
-                        // Add your notification logic here
-                      },
-                    ),
-                    ProfileButton(
-                      icon: Icons.language,
-                      label: 'Language',
-                      onTap: () {
-                        // Add your language selection logic here
-                      },
-                    ),
-                  ],
-                )),
-                const SizedBox(height: 20),
-                // Theme Section
-                BorderStyleProfile(
-                  child: ProfileButton(
-                    leading: Transform.scale(
-                        scale: 0.8,
-                        child: Switch(
-                          value: true,
-                          onChanged: (v) {},
-                        )),
-                    isTop: true,
-                    icon: Icons.color_lens,
-                    label: 'Theme',
-                    onTap: () {
-                      // Add your edit profile information logic here
-                    },
-                  ),
-                ),
-                const SizedBox(height: 20),
-                BorderStyleProfile(
-                  child: Column(
-                    children: [
-                      ProfileButton(
-                        isTop: true,
-                        icon: Icons.security,
-                        label: 'Security',
-                        onTap: () {
-                          // Add your edit profile information logic here
-                        },
-                      ),
-                      ProfileButton(
-                        icon: Icons.lock,
-                        label: 'Privacy Policy',
-                        onTap: () {
-                          // Add your edit profile information logic here
-                        },
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
+        );
+      }),
     );
   }
 }
@@ -200,8 +221,7 @@ class TopImageProfile extends StatelessWidget {
                               ),
                               child: IconButton(
                                 onPressed: () {
-                                  Navigator.push(context,
-                                      new MaterialPageRoute(builder: (context) => NewPage()));
+                                  Navigator.push(context, new MaterialPageRoute(builder: (context) => NewPage()));
                                   // Add your edit profile logic here
                                 },
                                 icon: const FittedBox(child: Icon(Icons.edit)),
@@ -309,8 +329,6 @@ class ProfileButton extends StatelessWidget {
   }
 }
 
-
-
 class NewPage extends StatelessWidget {
   const NewPage({Key? key}) : super(key: key);
 
@@ -345,13 +363,11 @@ class NewPage extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding:
-                const EdgeInsets.symmetric(horizontal: 8.0, vertical: 30),
+                padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 30),
                 child: FluttermojiCustomizer(
                   scaffoldWidth: min(600, _width * 0.85),
                   autosave: false,
-                  theme: FluttermojiThemeData(
-                      boxDecoration: BoxDecoration(boxShadow: [BoxShadow()])),
+                  theme: FluttermojiThemeData(boxDecoration: BoxDecoration(boxShadow: [BoxShadow()])),
                 ),
               ),
             ],
