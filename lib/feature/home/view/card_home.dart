@@ -4,6 +4,8 @@ import 'package:realstate/common/network/exceptions/exceptions.dart';
 import 'package:realstate/common/theme/typography.dart';
 import 'package:realstate/feature/home/view/features_home.dart';
 
+import '../../ad_details  /presentation/ui/screens/ad_detalis.dart';
+
 class CardHome extends StatelessWidget {
   const CardHome({Key? key}) : super(key: key);
 
@@ -11,7 +13,9 @@ class CardHome extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        //todo moneir go to detail card
+        Navigator.of(context).push(MaterialPageRoute(builder: (ctx) {
+          return Demo();
+        }));
       },
       child: Card(
         margin: REdgeInsetsDirectional.only(bottom: 25),
@@ -76,7 +80,12 @@ class CardHome extends StatelessWidget {
                                   ),
                                   Text(
                                     'Los Angels, USA',
-                                    style: context.textTheme.bodySmall!.copyWith(color: context.colorScheme.outline),
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .labelSmall!
+                                        .copyWith(
+                                            color: Colors.grey,
+                                            fontSize: 10.sp),
                                   ),
                                   17.horizontalSpace,
                                   Icon(
@@ -87,13 +96,19 @@ class CardHome extends StatelessWidget {
                                   6.horizontalSpace,
                                   Text(
                                     '4,8',
-                                    style: context.textTheme.bodySmall!.copyWith(color: context.colorScheme.outline),
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .labelSmall!
+                                        .copyWith(
+                                            color: Colors.grey,
+                                            fontSize: 10.sp),
                                   )
                                 ],
                               ),
                             ],
                           ),
-                          VerticalDivider(color: Colors.grey, width: 10.w, thickness: 1),
+                          VerticalDivider(
+                              color: Colors.grey, width: 10.w, thickness: 1),
                           RichText(
                             textAlign: TextAlign.center,
                             text: TextSpan(
