@@ -5,7 +5,6 @@ import 'package:realstate/common/constant/response_wrapper.dart';
 import 'package:realstate/feature/add_ad/infrastructure/model/add_add.dart';
 
 import '../../../../../common/network/api_utils.dart';
-import '../../../../../common/network/route.dart';
 
 @injectable
 class AddAdRemote {

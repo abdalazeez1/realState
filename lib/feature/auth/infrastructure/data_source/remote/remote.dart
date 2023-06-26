@@ -16,7 +16,7 @@ class AuthRemote {
   Future<ResponseWrapper<LoginResponse>> login({required ParamsWrapper paramsWrapper}) async {
     return throwAppException(
       () async {
-        final response = await _dio.get(APIRoutes.auth.login, queryParameters: paramsWrapper.params);
+        final response = await _dio.post(APIRoutes.auth.login, queryParameters: paramsWrapper.params);
         return ResponseWrapper.fromJson(response.data, (json) => LoginResponse.fromJson(json as Map<String, dynamic>));
       },
     );

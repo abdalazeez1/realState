@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../common/app_widget/drop_down_menu.dart';
 import 'ad_section.dart';
 class SelectPhotoWidegt extends StatelessWidget {
   const SelectPhotoWidegt({

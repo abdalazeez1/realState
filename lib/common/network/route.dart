@@ -1,7 +1,7 @@
 abstract class APIRoutes {
   APIRoutes._();
 
-
+static const baseUrl = "https://demo.powerofcode.net/bashar/public/api/";
 
   static const auth = _Auth();
 }

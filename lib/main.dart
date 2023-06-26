@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:injectable/injectable.dart';
 import 'package:realstate/common/theme/app_theme.dart';
 import 'package:realstate/router/router.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'common/helper/dependencie_injection.dart';
 
-void main() async{
+void main() async {
   configureDependencies();
 
   runApp(const MyApp());
@@ -24,7 +26,7 @@ class MyApp extends StatelessWidget {
         return MaterialApp.router(
           routerConfig: router,
           title: 'Flutter Demo',
-          theme: getAppTheme( ThemeMode.light, context),
+          theme: getAppTheme(ThemeMode.light, context),
         );
       },
     );

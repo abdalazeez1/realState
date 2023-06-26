@@ -34,6 +34,7 @@ class ProfileScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: kPage),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 BorderStyleProfile(
                     child: Column(

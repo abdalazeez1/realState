@@ -10,7 +10,7 @@ import '../../../auth/domain/repo/repo.dart';
 import '../../domain/repo/repo.dart';
 import '../data_source/remote/remote.dart';
 import '../model/search.dart';
-@Injectable(as: IAuthRepo)
+@Injectable(as: ISearchRepo)
 class SearchRepoImpl implements ISearchRepo {
   final SearchRemote _remote;
 

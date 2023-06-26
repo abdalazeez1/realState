@@ -44,7 +44,7 @@ class SearchScreen extends StatelessWidget {
                           style: Theme.of(context)
                               .textTheme
                               .displaySmall
-                              ?.copyWith(color: Theme.of(context).colorScheme.primary, fontSize: 24)),
+                              ?.copyWith(color: Theme                                                        .of(context).colorScheme.primary, fontSize: 24)),
                       SizedBox(
                         height: 10,
                       ),

@@ -10,7 +10,7 @@ import '../../../auth/domain/repo/repo.dart';
 import '../../domain/repo/repo.dart';
 import '../data_source/remote/remote.dart';
 import '../model/add_add.dart';
-@Injectable(as: IAuthRepo)
+@Injectable(as: IAddAdRepo)
 class AddAdRepoImpl implements IAddAdRepo {
   final AddAdRemote _remote;
 

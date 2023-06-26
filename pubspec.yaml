@@ -45,6 +45,9 @@ dependencies:
   pinput: ^2.2.31
   flutter_svg: ^2.0.6
   fluttermoji: ^1.0.2
+  logger: ^1.4.0
+#  storage
+  shared_preferences: ^2.1.2
 #network
   dio: ^5.2.0+1
 #model

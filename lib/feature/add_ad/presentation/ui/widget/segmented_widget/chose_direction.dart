@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:realstate/common/app_widget/reactive_text_field.dart';
-import 'package:realstate/feature/add_ad/infrastructure/model/add_add.dart';
 
-import '../../../../../../common/app_widget/drop_down_menu.dart';
 import '../../../state/add_ad_bloc.dart';
 import '../ad_section.dart';
 class ChoseDirectionWidget extends StatelessWidget {

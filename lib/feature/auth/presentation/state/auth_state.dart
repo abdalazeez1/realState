@@ -5,7 +5,6 @@ class AuthState {
   final BlocStatus loginStatus;
   final BlocStatus signUpStatus;
   final BlocStatus verifyRegisterStatus;
-
   const AuthState({
     this.verifyRegisterStatus = const BlocStatus.initial(),
     this.loginStatus = const BlocStatus.initial(),

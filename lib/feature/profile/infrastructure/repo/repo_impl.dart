@@ -10,7 +10,7 @@ import '../../../auth/domain/repo/repo.dart';
 import '../../domain/repo/repo.dart';
 import '../data_source/remote/remote.dart';
 import '../model/profile.dart';
-@Injectable(as: IAuthRepo)
+@Injectable(as: IProfileRepo)
 class ProfileRepoImpl implements IProfileRepo {
   final ProfileRemote _remote;
 

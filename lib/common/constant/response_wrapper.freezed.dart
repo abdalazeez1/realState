@@ -22,7 +22,7 @@ ResponseWrapper<T> _$ResponseWrapperFromJson<T>(
 /// @nodoc
 mixin _$ResponseWrapper<T> {
   String? get status => throw _privateConstructorUsedError;
-  T? get response => throw _privateConstructorUsedError;
+  T? get data => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson(Object? Function(T) toJsonT) =>
       throw _privateConstructorUsedError;
@@ -37,7 +37,7 @@ abstract class $ResponseWrapperCopyWith<T, $Res> {
           ResponseWrapper<T> value, $Res Function(ResponseWrapper<T>) then) =
       _$ResponseWrapperCopyWithImpl<T, $Res, ResponseWrapper<T>>;
   @useResult
-  $Res call({String? status, T? response});
+  $Res call({String? status, T? data});
 }
 
 /// @nodoc
@@ -54,16 +54,16 @@ class _$ResponseWrapperCopyWithImpl<T, $Res, $Val extends ResponseWrapper<T>>
   @override
   $Res call({
     Object? status = freezed,
-    Object? response = freezed,
+    Object? data = freezed,
   }) {
     return _then(_value.copyWith(
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String?,
-      response: freezed == response
-          ? _value.response
-          : response // ignore: cast_nullable_to_non_nullable
+      data: freezed == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
               as T?,
     ) as $Val);
   }
@@ -77,7 +77,7 @@ abstract class _$$_ResponseWrapperCopyWith<T, $Res>
       __$$_ResponseWrapperCopyWithImpl<T, $Res>;
   @override
   @useResult
-  $Res call({String? status, T? response});
+  $Res call({String? status, T? data});
 }
 
 /// @nodoc
@@ -92,16 +92,16 @@ class __$$_ResponseWrapperCopyWithImpl<T, $Res>
   @override
   $Res call({
     Object? status = freezed,
-    Object? response = freezed,
+    Object? data = freezed,
   }) {
     return _then(_$_ResponseWrapper<T>(
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String?,
-      response: freezed == response
-          ? _value.response
-          : response // ignore: cast_nullable_to_non_nullable
+      data: freezed == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
               as T?,
     ));
   }
@@ -112,7 +112,7 @@ class __$$_ResponseWrapperCopyWithImpl<T, $Res>
 class _$_ResponseWrapper<T>
     with DiagnosticableTreeMixin
     implements _ResponseWrapper<T> {
-  const _$_ResponseWrapper({this.status, this.response});
+  const _$_ResponseWrapper({this.status, this.data});
 
   factory _$_ResponseWrapper.fromJson(
           Map<String, dynamic> json, T Function(Object?) fromJsonT) =>
@@ -121,11 +121,11 @@ class _$_ResponseWrapper<T>
   @override
   final String? status;
   @override
-  final T? response;
+  final T? data;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ResponseWrapper<$T>(status: $status, response: $response)';
+    return 'ResponseWrapper<$T>(status: $status, data: $data)';
   }
 
   @override
@@ -134,7 +134,7 @@ class _$_ResponseWrapper<T>
     properties
       ..add(DiagnosticsProperty('type', 'ResponseWrapper<$T>'))
       ..add(DiagnosticsProperty('status', status))
-      ..add(DiagnosticsProperty('response', response));
+      ..add(DiagnosticsProperty('data', data));
   }
 
   @override
@@ -143,13 +143,13 @@ class _$_ResponseWrapper<T>
         (other.runtimeType == runtimeType &&
             other is _$_ResponseWrapper<T> &&
             (identical(other.status, status) || other.status == status) &&
-            const DeepCollectionEquality().equals(other.response, response));
+            const DeepCollectionEquality().equals(other.data, data));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, status, const DeepCollectionEquality().hash(response));
+      runtimeType, status, const DeepCollectionEquality().hash(data));
 
   @JsonKey(ignore: true)
   @override
@@ -165,7 +165,7 @@ class _$_ResponseWrapper<T>
 }
 
 abstract class _ResponseWrapper<T> implements ResponseWrapper<T> {
-  const factory _ResponseWrapper({final String? status, final T? response}) =
+  const factory _ResponseWrapper({final String? status, final T? data}) =
       _$_ResponseWrapper<T>;
 
   factory _ResponseWrapper.fromJson(
@@ -175,7 +175,7 @@ abstract class _ResponseWrapper<T> implements ResponseWrapper<T> {
   @override
   String? get status;
   @override
-  T? get response;
+  T? get data;
   @override
   @JsonKey(ignore: true)
   _$$_ResponseWrapperCopyWith<T, _$_ResponseWrapper<T>> get copyWith =>

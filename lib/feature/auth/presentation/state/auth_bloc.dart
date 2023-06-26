@@ -1,12 +1,13 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:realstate/common/constant/params.dart';
 import 'package:realstate/common/network/page_state/bloc_status.dart';
-import 'package:realstate/common/network/page_state/page_state.dart';
 import 'package:realstate/common/network/result.dart';
 
 import '../../../../common/app_widget/reactive_text_field.dart';
@@ -27,13 +28,19 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   Future loginEvent(LoginAuth event, Emitter emit) async {
+    if (signInForm.valid){
     emit(state.copyWith(loginStatus: const BlocStatus.loading()));
+    log(signInForm.rawValue.toString());
+    log(signInForm.reduceValue().toString());
     final result = await authFaced.login(paramsWrapper: ParamsWrapper(signInForm.rawValue));
     switch (result) {
       case Success(value: final data):
         emit(state.copyWith(loginStatus: const BlocStatus.success()));
+        event.onSuccess();
       case Failure(exception: final exception, message: final message):
         emit(state.copyWith(loginStatus: BlocStatus.fail(error: message)));
+    }}else {
+      signInForm.markAllAsTouched();
     }
   }
 
