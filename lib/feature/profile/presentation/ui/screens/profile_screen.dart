@@ -124,8 +124,8 @@ class ProfileScreen extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            loading: () => AppStateWidget.loading(),
-                            error: (exception ,error) => AppStateWidget.error(),
+                            loading: () => const AppStateWidget.loading(),
+                            error: (exception ,error) => const AppStateWidget.error(),
                             result: state.profileStatus,
                             empty: () => const SizedBox());
             },
@@ -221,7 +221,7 @@ class TopImageProfile extends StatelessWidget {
                               ),
                               child: IconButton(
                                 onPressed: () {
-                                  Navigator.push(context, new MaterialPageRoute(builder: (context) => NewPage()));
+                                  Navigator.push(context, new MaterialPageRoute(builder: (context) => const NewPage()));
                                   // Add your edit profile logic here
                                 },
                                 icon: const FittedBox(child: Icon(Icons.edit)),
@@ -357,7 +357,7 @@ class NewPage extends StatelessWidget {
                       "Customize:",
                       style: Theme.of(context).textTheme.titleLarge,
                     ),
-                    Spacer(),
+                    const Spacer(),
                     FluttermojiSaveWidget(),
                   ],
                 ),
@@ -367,7 +367,7 @@ class NewPage extends StatelessWidget {
                 child: FluttermojiCustomizer(
                   scaffoldWidth: min(600, _width * 0.85),
                   autosave: false,
-                  theme: FluttermojiThemeData(boxDecoration: BoxDecoration(boxShadow: [BoxShadow()])),
+                  theme: FluttermojiThemeData(boxDecoration: const BoxDecoration(boxShadow: [BoxShadow()])),
                 ),
               ),
             ],
