@@ -125,7 +125,7 @@ class ProfileScreen extends StatelessWidget {
                               ],
                             ),
                             loading: () => const AppStateWidget.loading(),
-                            error: (exception ,error) => const AppStateWidget.error(),
+                            error: (exception ,error) =>  AppStateWidget.error(message: error),
                             result: state.profileStatus,
                             empty: () => const SizedBox());
             },

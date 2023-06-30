@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:realstate/common/helper/dependencie_injection.dart';
 import 'package:realstate/feature/auth/presentation/ui/screen/welcom_scree.dart';
+import 'package:realstate/feature/base/view/base.dart';
 
+import '../../../common/service/storage/i_storage_service.dart';
+import '../../../common/service/storage/storage_service.dart';
 import '../../../generated/assets.dart';
 
 class Splashscreen extends StatefulWidget {
@@ -29,9 +33,13 @@ class _SplashscreenState extends State<Splashscreen> {
   }
 
   Future<void> check() async {
-    await Future.delayed(Duration(seconds: 3));
+    await Future.delayed(const Duration(seconds: 3));
     if (mounted) {
-      context.goNamed(WelcomeScreen.name);
+      if (getIt<IStorageService>().registeredUser) {
+        context.goNamed(BasePage.name);
+      } else {
+        context.goNamed(WelcomeScreen.name);
+      }
     }
   }
 
@@ -43,13 +51,13 @@ class _SplashscreenState extends State<Splashscreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Spacer(),
-            LogoAndTitleApp(),
+            const LogoAndTitleApp(),
             const Spacer(),
-             Align(
+            Align(
               alignment: Alignment.bottomCenter,
               child: Padding(
-                padding:  const EdgeInsets.only(bottom: 20),
-                child:  Text(
+                padding: const EdgeInsets.only(bottom: 20),
+                child: Text(
                   'Made with love ❤',
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
@@ -73,7 +81,7 @@ class LogoAndTitleApp extends StatelessWidget {
       children: [
         SvgPicture.asset(Assets.imagesLogo),
         const SizedBox(height: 20),
-        TitleApp(),
+        const TitleApp(),
       ],
     );
   }
