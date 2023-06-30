@@ -8,7 +8,7 @@ part 'response_wrapper.g.dart';
 sealed class ResponseWrapper<T> with _$ResponseWrapper<T>{
   const factory ResponseWrapper ({
     final String? status,
-    final T? response,
+  required  final T data,
   }) = _ResponseWrapper;
 
   factory ResponseWrapper.fromJson(Map<String, dynamic> json,
