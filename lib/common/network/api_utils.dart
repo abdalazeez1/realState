@@ -50,18 +50,33 @@ Future<Result<T>> toApiResult<T>(FutureOr<T> Function() call) async {
     return Success(await call());
   } on AppNetworkResponseException catch (e) {
     if (e.data is! String) {
-      return Failure(e, message: e.message);
+      return Failure(
+        e,
+        message: e.message,
+      );
     }
-    return Failure(e, message: e.message);
+    return Failure(
+      e,
+      message: e.message,
+    );
   } on AppNetworkException catch (e) {
     final message = e.message;
     final appNetworkException = e.copyWith(message: message);
-    return Failure(appNetworkException, message: message);
+    return Failure(
+      appNetworkException,
+      message: message,
+    );
   } on AppException catch (e) {
-    return Failure(e, message: e.message);
+    return Failure(
+       e,
+      message: e.message,
+    );
   } catch (e, s) {
     log(e.toString(), stackTrace: s);
     final exception = AppException.unknown(exception: e, message: e.toString());
-    return Failure(exception, message: exception.message);
+    return Failure(
+       exception,
+      message: exception.message,
+    );
   }
 }

@@ -6,8 +6,6 @@ import 'package:dio/io.dart';
 import 'package:injectable/injectable.dart';
 
 import '../network/exceptions/exceptions.dart';
-import '../network/log_interceptor.dart';
-import '../network/route.dart';
 
 
 /// A callback that returns a Dio response, presumably from a Dio method
@@ -24,7 +22,7 @@ typedef ResponseExceptionMapper = AppException? Function(
 @Singleton(as: Dio)
 class DioClient with DioMixin implements Dio {
   ///this is locale for testing purpose
-  DioClient():baseUrl = APIRoutes.baseUrl {
+  DioClient():baseUrl = "http://127.0.0.1:8000/api/" {
 
     httpClientAdapter = IOHttpClientAdapter();
     options =   BaseOptions();
@@ -34,7 +32,9 @@ class DioClient with DioMixin implements Dio {
         'Content-Type': 'application/json; charset=UTF-8',
         'lang': "en",
       };
-      interceptors.addAll([LoggerInterceptor()]);
+    // if (interceptors.isNotEmpty) {
+    //   interceptors.addAll(interceptors);
+    // }
   }
 
   final String baseUrl;
