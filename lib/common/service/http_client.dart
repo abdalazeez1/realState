@@ -4,11 +4,12 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 import 'package:injectable/injectable.dart';
+import 'package:realstate/common/helper/dependencie_injection.dart';
+import 'package:realstate/common/service/storage/i_storage_service.dart';
 
 import '../network/exceptions/exceptions.dart';
 import '../network/log_interceptor.dart';
 import '../network/route.dart';
-
 
 /// A callback that returns a Dio response, presumably from a Dio method
 /// it has called which performs an HTTP request, such as `dio.get()`,
@@ -21,20 +22,29 @@ typedef ResponseExceptionMapper = AppException? Function(
   Response response,
   Exception e,
 );
+
 @Singleton(as: Dio)
 class DioClient with DioMixin implements Dio {
   ///this is locale for testing purpose
-  DioClient():baseUrl = APIRoutes.baseUrl {
-
+  DioClient() : baseUrl = APIRoutes.baseUrl {
     httpClientAdapter = IOHttpClientAdapter();
-    options =   BaseOptions();
+    options = BaseOptions();
     options
       ..baseUrl = baseUrl
-      ..headers = {
-        'Content-Type': 'application/json; charset=UTF-8',
-        'lang': "en",
-      };
-      interceptors.addAll([LoggerInterceptor()]);
+      ..headers = {'Content-Type': 'application/json; charset=UTF-8', 'lang': "en", "api_password": "property_bashar"};
+    interceptors.addAll([
+      InterceptorsWrapper(
+        onRequest: (options, handler) {
+          var storageService = getIt<IStorageService>();
+          if (storageService.registeredUser) {
+            options.headers.addAll({'AUTHORIZATION': addBearer(storageService.token ?? '')});
+          }
+          return handler.next(options);
+        },
+      ),
+      LoggerInterceptor(),
+
+    ]);
   }
 
   final String baseUrl;
@@ -42,21 +52,19 @@ class DioClient with DioMixin implements Dio {
   @override
   Future<Response<T>> get<T>(
     String path, {
-        Object? data,
-        Map<String, dynamic>? queryParameters,
-        Options? options,
-        CancelToken? cancelToken,
-        ProgressCallback? onReceiveProgress,
+    Object? data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onReceiveProgress,
   }) {
     return _mapException(
-      () => super.get(
-        path,
-        queryParameters: queryParameters,
-        options: options,
-        onReceiveProgress: onReceiveProgress,
-        cancelToken: cancelToken,
-        data: data
-      ),
+      () => super.get(path,
+          queryParameters: queryParameters,
+          options: options,
+          onReceiveProgress: onReceiveProgress,
+          cancelToken: cancelToken,
+          data: data),
     );
   }
 
@@ -135,30 +143,25 @@ class DioClient with DioMixin implements Dio {
     try {
       return await method();
     } on DioException catch (exception) {
-      if (exception.response?.statusCode.toString().matchAsPrefix('5') !=
-          null) {
+      if (exception.response?.statusCode.toString().matchAsPrefix('5') != null) {
         throw AppNetworkException(
             reason: AppNetworkExceptionReason.serverError,
             exception: exception,
-            message:hendleMessage(exception.response?.data)
-            );
+            message: hendleMessage(exception.response?.data));
       }
       switch (exception.type) {
         case DioExceptionType.cancel:
           throw AppNetworkException(
               reason: AppNetworkExceptionReason.canceled,
               exception: exception,
-              message: hendleMessage(exception.response?.data)
-
-              );
+              message: hendleMessage(exception.response?.data));
         case DioExceptionType.connectionTimeout:
         case DioExceptionType.receiveTimeout:
         case DioExceptionType.sendTimeout:
           throw AppNetworkException(
               reason: AppNetworkExceptionReason.timedOut,
               exception: exception,
-              message:  hendleMessage(exception.response?.data)
-              );
+              message: hendleMessage(exception.response?.data));
         case DioExceptionType.badResponse:
           // For DioErrorType.response, we are guaranteed to have a
           // response object present on the exception.
@@ -166,11 +169,7 @@ class DioClient with DioMixin implements Dio {
           if (response == null || response is! Response<T>) {
             // This should never happen, judging by the current source code
             // for Dio.
-            throw AppNetworkResponseException(
-                exception: exception,
-                message:
-                hendleMessage(exception.response?.data)
-                );
+            throw AppNetworkResponseException(exception: exception, message: hendleMessage(exception.response?.data));
           }
 
           throw mapper?.call(response, exception) ??
@@ -180,27 +179,27 @@ class DioClient with DioMixin implements Dio {
                   exception: exception,
                   statusCode: response.statusCode,
                   data: response.data,
-                  message:  hendleMessage(exception.response?.data)
-                  );
+                  message: hendleMessage(exception.response?.data));
         case DioExceptionType.unknown:
         default:
           if (exception.error is SocketException) {
             throw AppNetworkException(
                 reason: AppNetworkExceptionReason.noInternet,
-                message:  hendleMessage(exception.response?.data)
-                ,
+                message: hendleMessage(exception.response?.data),
                 exception: exception);
           }
-          throw AppException.unknown(exception: exception,message: hendleMessage(exception.response?.data));
+          throw AppException.unknown(exception: exception, message: hendleMessage(exception.response?.data));
       }
     } catch (e, s) {
       log(e.toString(), stackTrace: s);
       throw AppException.unknown(
-        exception: e is Exception ? e : Exception('Unknown exception occurred'),
-        message: e.toString()
-      );
+          exception: e is Exception ? e : Exception('Unknown exception occurred'), message: e.toString());
     }
   }
 
- String  hendleMessage(dynamic exceptionResponse) => (exceptionResponse is Map && exceptionResponse['message'] != null)? (exceptionResponse['message'] ?? " Some thing happen") : 'Something happen ';//todo click to submit error
+  String hendleMessage(dynamic exceptionResponse) => (exceptionResponse is Map && exceptionResponse['message'] != null)
+      ? (exceptionResponse['message'] ?? " Some thing happen")
+      : 'Something happen '; //todo click to submit error
 }
+
+String addBearer(String hh) => 'Bearer $hh';

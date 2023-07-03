@@ -5,7 +5,7 @@ import 'package:realstate/common/constant/response_wrapper.dart';
 
 import '../../../../../common/network/api_utils.dart';
 import '../../../../../common/network/route.dart';
-import '../../model/profile.dart';
+import '../../model/user.dart';
 
 @injectable
 class ProfileRemote {
@@ -13,11 +13,11 @@ class ProfileRemote {
 
   ProfileRemote(this._dio);
 
-  Future<ResponseWrapper<Profile>> profile() async {
+  Future<ResponseWrapper<User>> profile() async {
     return throwAppException(
       () async {
         final response = await _dio.get(APIRoutes.auth.profile, );
-        return ResponseWrapper.fromJson(response.data, (json) => Profile());
+        return ResponseWrapper.fromJson(response.data, (json) => User.fromJson(json));
       },
     );
   }

@@ -7,10 +7,10 @@ import 'package:meta/meta.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:realstate/common/network/page_state/page_state.dart';
 import 'package:realstate/feature/profile/application/facade.dart';
-import 'package:realstate/feature/profile/infrastructure/model/profile.dart';
 
 import '../../../../common/app_widget/reactive_text_field.dart';
 import '../../../../common/network/result.dart';
+import '../../infrastructure/model/user.dart';
 
 part 'profile_event.dart';
 part 'profile_state.dart';

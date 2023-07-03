@@ -9,12 +9,14 @@ import 'package:fluttermoji/fluttermojiThemeData.dart';
 import 'package:go_router/go_router.dart';
 import 'package:realstate/common/app_widget/app_state_widget/app_state_widget.dart';
 import 'package:realstate/common/helper/dependencie_injection.dart';
-import 'package:realstate/feature/profile/infrastructure/model/profile.dart';
+import 'package:realstate/common/service/storage/i_storage_service.dart';
+import 'package:realstate/feature/auth/presentation/ui/screen/welcom_scree.dart';
 import 'package:realstate/feature/profile/presentation/state/profile_bloc.dart';
 
 import '../../../../../common/constant/constant.dart';
 import '../../../../../common/network/page_state/result_builder.dart';
 import '../../../../notification/view/notification.dart';
+import '../../../infrastructure/model/user.dart';
 import 'edit_profile.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -28,17 +30,17 @@ class ProfileScreen extends StatelessWidget {
         return Scaffold(
           body: BlocBuilder<ProfileBloc, ProfileState>(
             builder: (context, state) {
-              return PageStateBuilder<Profile>(
+              return PageStateBuilder<User>(
                             init: () => const SizedBox(),
                             success: (data) => Column(
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
-                                const TopImageProfile(),
+                                 TopImageProfile(user: data.authenticatedUser),
                                 Padding(
                                   padding: const EdgeInsets.symmetric(vertical: 20, horizontal: kPage + 8),
                                   child: Center(
                                     child: Text(
-                                      'Email: john.doe@example.com',
+                                      'Email: ${data.authenticatedUser?.email}',
                                       style: Theme.of(context).textTheme.labelSmall,
                                     ),
                                   ),
@@ -119,6 +121,24 @@ class ProfileScreen extends StatelessWidget {
                                           ],
                                         ),
                                       ),
+                                      const SizedBox(height: 20),
+                                      BorderStyleProfile(
+                                        child: Column(
+                                          children: [
+                                            ProfileButton(
+                                              isTop: true,
+                                              icon: Icons.logout,
+                                              label: 'Logout',
+                                              onTap: () {
+                                                getIt<IStorageService>().clearUser();
+                                                context.goNamed(WelcomeScreen.name);
+                                                // Add your edit profile information logic here
+                                              },
+                                            ),
+
+                                          ],
+                                        ),
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -166,9 +186,9 @@ class BorderStyleProfile extends StatelessWidget {
 
 class TopImageProfile extends StatelessWidget {
   const TopImageProfile({
-    super.key,
+    super.key, required this.user,
   });
-
+final AuthenticatedUser? user ;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -252,7 +272,7 @@ class TopImageProfile extends StatelessWidget {
                   ],
                 ),
                 Text(
-                  'John Doe',
+                  user?.name ?? '',
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
               ],

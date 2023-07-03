@@ -4,7 +4,7 @@ import 'package:realstate/common/constant/response_wrapper.dart';
 import 'package:realstate/common/network/result.dart';
 
 import '../domain/repo/repo.dart';
-import '../infrastructure/model/profile.dart';
+import '../infrastructure/model/user.dart';
 
 @injectable
 class ProfileFacade {
@@ -12,7 +12,7 @@ class ProfileFacade {
 
   ProfileFacade({required IProfileRepo repo}) : _repo = repo;
 
-  Future<Result<ResponseWrapper<Profile>>> profile() async =>
+  Future<Result<ResponseWrapper<User>>> profile() async =>
       _repo.profile();
 
  }

@@ -9,7 +9,7 @@ import '../../../../common/network/api_utils.dart';
 import '../../../auth/domain/repo/repo.dart';
 import '../../domain/repo/repo.dart';
 import '../data_source/remote/remote.dart';
-import '../model/profile.dart';
+import '../model/user.dart';
 @Injectable(as: IProfileRepo)
 class ProfileRepoImpl implements IProfileRepo {
   final ProfileRemote _remote;
@@ -19,7 +19,7 @@ class ProfileRepoImpl implements IProfileRepo {
 
 
   @override
-  Future<Result<ResponseWrapper<Profile>>> profile() {
+  Future<Result<ResponseWrapper<User>>> profile() {
     return toApiResult(() async {
       final result = await _remote.profile(  );
       return result;
