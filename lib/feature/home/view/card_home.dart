@@ -4,7 +4,7 @@ import 'package:realstate/common/network/exceptions/exceptions.dart';
 import 'package:realstate/common/theme/typography.dart';
 import 'package:realstate/feature/home/view/features_home.dart';
 
-import '../../ad_details  /presentation/ui/screens/ad_detalis.dart';
+import '../../ad_details/presentation/ui/screens/ad_detalis.dart';
 
 class CardHome extends StatelessWidget {
   const CardHome({Key? key}) : super(key: key);

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:realstate/feature/ad_details%20%20/presentation/ui/screens/comment.dart';
+import 'package:realstate/feature/ad_details/presentation/ui/screens/comment.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../widgets/borker_card.dart';
 import '../widgets/bottun.dart';
