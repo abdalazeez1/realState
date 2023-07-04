@@ -1,12 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:realstate/common/network/exceptions/exceptions.dart';
 import 'package:realstate/common/theme/typography.dart';
 
 import '../widget/fav_card.dart';
 
 class FavoriteScreen extends StatelessWidget {
+
+  static const path = 'favorite';
+  static const name = 'favorite';
+  static Widget pageBuilder(BuildContext context, GoRouterState state) {
+    return const FavoriteScreen();
+  }
   const FavoriteScreen({Key? key}) : super(key: key);
 
   @override

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:realstate/common/network/exceptions/exceptions.dart';
 import 'package:realstate/common/theme/typography.dart';
 import 'package:realstate/common/app_widget/buttom_on_image.dart';
@@ -15,9 +16,7 @@ class CardHome extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(builder: (ctx) {
-          return Demo();
-        }));
+        context.pushNamed(DetailScreen.name);
       },
       child: Card(
         margin: REdgeInsetsDirectional.only(bottom: 25),

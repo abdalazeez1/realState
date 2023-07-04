@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:realstate/common/app_widget/app_text_field.dart';
 import 'package:realstate/common/network/exceptions/exceptions.dart';
 import 'package:realstate/common/theme/typography.dart';
@@ -8,6 +9,11 @@ import '../widget/card_home.dart';
 import '../widget/custome_chip.dart';
 
 class HomeScreen extends StatelessWidget {
+  static const path = 'home';
+  static const name = 'home';
+  static Widget pageBuilder(BuildContext context, GoRouterState state) {
+    return const HomeScreen();
+  }
   const HomeScreen({Key? key}) : super(key: key);
 
   @override

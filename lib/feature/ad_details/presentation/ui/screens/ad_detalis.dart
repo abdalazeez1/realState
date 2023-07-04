@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:realstate/common/network/exceptions/exceptions.dart';
 import 'package:realstate/common/theme/typography.dart';
 import 'package:realstate/feature/ad_details/presentation/ui/screens/comment.dart';
@@ -23,14 +24,20 @@ final imageDemo = [
   'assets/images/villa3.jpeg',
 ];
 
-class Demo extends StatefulWidget {
-  const Demo({super.key});
+class DetailScreen extends StatefulWidget {
+
+  static const path = 'detail';
+  static const name = 'detail';
+  static Widget pageBuilder(BuildContext context, GoRouterState state) {
+    return const DetailScreen();
+  }
+  const DetailScreen({super.key});
 
   @override
-  State<Demo> createState() => _DemoState();
+  State<DetailScreen> createState() => _DetailScreenState();
 }
 
-class _DemoState extends State<Demo> {
+class _DetailScreenState extends State<DetailScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
