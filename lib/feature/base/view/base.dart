@@ -63,16 +63,16 @@ class _BasePageState extends State<BasePage> {
           // floatingActionButtonLocation: FloatingActionButtonLocation.miniCenterDocked,
           bottomNavigationBar: CurvedNavigationBar(
               color: context.colorScheme.primary,
-            buttonBackgroundColor: context.colorScheme.inversePrimary,
+            buttonBackgroundColor: context.colorScheme.primary,
             backgroundColor: context.colorScheme.onPrimary,
             height: 50.h,
             animationDuration: const Duration(milliseconds: 500),
-            items: const [
-              Icon(Icons.home),
-              Icon(Icons.search),
-              Icon(Icons.add),
-              Icon(Icons.favorite),
-              Icon(Icons.person),
+            items:  [
+              Icon(Icons.home,color: context.colorScheme.onPrimary),
+              Icon(Icons.search,color: context.colorScheme.onPrimary),
+              Icon(Icons.add,color: context.colorScheme.onPrimary),
+              Icon(Icons.favorite,color: context.colorScheme.onPrimary),
+              Icon(Icons.person,color: context.colorScheme.onPrimary),
             ],
             index: _selectedIndex,
              onTap: _onItemTapped,
