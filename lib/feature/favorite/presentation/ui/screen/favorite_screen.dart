@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:realstate/common/network/exceptions/exceptions.dart';
 import 'package:realstate/common/theme/typography.dart';
 
-import 'fav_card.dart';
+import '../widget/fav_card.dart';
 
 class FavoriteScreen extends StatelessWidget {
   const FavoriteScreen({Key? key}) : super(key: key);
@@ -39,10 +39,10 @@ class FavoriteScreen extends StatelessWidget {
           )
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 15),
-        child: ListView.builder(itemBuilder: (context, index) => const CardFavorite(),itemCount: 10),
-      ),
+      body: ListView.builder(itemBuilder: (context, index) => Padding(
+        padding:REdgeInsetsDirectional.only(end: 10,start: 10,top: index==0?10:0,bottom:index==9?10:0 ),
+        child: CardFavorite(),
+      ),itemCount: 10),
     );
   }
 }

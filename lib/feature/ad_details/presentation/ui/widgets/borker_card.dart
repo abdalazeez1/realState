@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:realstate/common/network/exceptions/exceptions.dart';
+import 'package:realstate/common/theme/typography.dart';
 
 class BrokerCard extends StatelessWidget {
   const BrokerCard({super.key});
@@ -7,23 +10,23 @@ class BrokerCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: Colors.grey.shade300, borderRadius: BorderRadius.circular(15)),
+          color: context.colorScheme.secondaryContainer, borderRadius: BorderRadius.circular(15.r)),
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-      margin: EdgeInsets.only(left: 2),
+      margin: REdgeInsetsDirectional.only(start: 2),
       width: MediaQuery.of(context).size.width * .5,
-      child: const Row(
+      child:  Row(
         children: [
           CircleAvatar(
             backgroundImage: AssetImage('assets/images/monier.jpg'),
           ),
-          SizedBox(width: 10),
+          10.horizontalSpace,
           Column(
             children: [
               Text(
                 'Mounir Anas',
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: context.textTheme.bodyMedium!.xb,
               ),
-              Text('Owner/Agent')
+              Text('Owner/Agent',style: context.textTheme.bodySmall,)
             ],
           )
         ],

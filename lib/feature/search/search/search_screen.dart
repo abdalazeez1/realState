@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:realstate/common/app_widget/app_text_field.dart';
 import 'package:realstate/common/constant/constant.dart';
-import 'package:realstate/feature/home/view/card_home.dart';
+import 'package:realstate/feature/home/presentation/ui/widget/card_home.dart';
 
-import '../../favorite/view/fav_card.dart';
+import '../../favorite/presentation/ui/widget/fav_card.dart';
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({Key? key}) : super(key: key);

@@ -7,7 +7,7 @@ import 'package:realstate/common/network/page_state/bloc_status.dart';
 import 'package:realstate/feature/auth/presentation/state/auth_bloc.dart';
 import 'package:realstate/feature/auth/presentation/ui/screen/signup_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:realstate/feature/home/view/home_screen.dart';
+import 'package:realstate/feature/home/presentation/ui/screen/home_screen.dart';
 import '../../../../../common/app_widget/reactive_text_field.dart';
 import '../../../../base/view/base.dart';
 import '../widgets/auth_button.dart';

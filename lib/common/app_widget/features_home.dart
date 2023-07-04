@@ -3,8 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:realstate/common/network/exceptions/exceptions.dart';
 import 'package:realstate/common/theme/typography.dart';
 
-class Featureshome extends StatelessWidget {
-  const Featureshome({
+class FeaturesHome extends StatelessWidget {
+  const FeaturesHome({
     super.key,
   });
 

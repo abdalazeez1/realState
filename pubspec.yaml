@@ -41,10 +41,12 @@ dependencies:
 #ui
   reactive_forms: ^15.0.0
   flutter_screenutil: ^5.8.4
+  curved_navigation_bar: ^1.0.3
   fluttertoast: ^8.2.2
   pinput: ^2.2.31
   flutter_svg: ^2.0.6
   fluttermoji: ^1.0.2
+  readmore: ^2.2.0
   logger: ^1.4.0
 #  storage
   shared_preferences: ^2.1.2

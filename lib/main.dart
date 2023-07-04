@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       builder: (BuildContext context, Widget? child) {
         return MaterialApp.router(
+          debugShowCheckedModeBanner: false,
           routerConfig: router,
           title: 'Flutter Demo',
           theme: getAppTheme( ThemeMode.system, context),

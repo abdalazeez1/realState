@@ -22,7 +22,7 @@ TextButtonThemeData _textButtonTheme(ColorScheme scheme, TextTheme textTheme) =>
     );
 
 CardTheme _card(ThemeData theme, ColorScheme scheme, TextTheme textTheme, ThemeMode themeMode) =>
-    theme.cardTheme.copyWith(surfaceTintColor: scheme.onPrimary);
+    theme.cardTheme.copyWith(color: scheme.onPrimary);
 
 AppBarTheme _appBarTheme(
         ThemeData theme, ColorScheme scheme, TextTheme textTheme, ThemeMode themeMode) =>
