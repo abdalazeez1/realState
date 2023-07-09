@@ -1,26 +1,52 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:realstate/common/app_widget/app_text_field.dart';
+import 'package:realstate/common/helper/dependencie_injection.dart';
 import 'package:realstate/common/network/exceptions/exceptions.dart';
+import 'package:realstate/common/network/page_state/page_state.dart';
 import 'package:realstate/common/theme/typography.dart';
+import 'package:realstate/feature/home/infrastructure/model/post_model.dart';
+import 'package:realstate/feature/home/presentation/state/home_bloc.dart';
 
+import '../../../../../common/app_widget/loading_widget.dart';
 import '../widget/card_home.dart';
 import '../widget/custome_chip.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   static const path = 'home';
   static const name = 'home';
+
   static Widget pageBuilder(BuildContext context, GoRouterState state) {
     return const HomeScreen();
   }
+
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  late final HomeBloc homeBloc;
+
+  @override
+  void initState() {
+    homeBloc = getIt<HomeBloc>();
+    homeBloc.add(GetAllPostHome());
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-          body: CustomScrollView(
+    return BlocProvider.value(
+      value: homeBloc,
+      child: SafeArea(
+        child: Scaffold(
+            body: RefreshIndicator(
+          onRefresh: () async => homeBloc.add(GetAllPostHome()),
+          child: CustomScrollView(
             slivers: [
               SliverAppBar(
                 backgroundColor: context.colorScheme.background,
@@ -28,15 +54,13 @@ class HomeScreen extends StatelessWidget {
                 toolbarHeight: 90.h,
                 pinned: true,
                 title: Padding(
-                  padding: REdgeInsetsDirectional.only(bottom: 10, top: 20,end: 10,start: 10),
+                  padding: REdgeInsetsDirectional.only(bottom: 10, top: 20, end: 10, start: 10),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text('Find Your \nBest Place to Stay',
-                          style: context.textTheme.headlineSmall!.xb
-                              .copyWith(color: context.colorScheme.primary)),
-                      Icon(Icons.notifications_none_outlined,
-                          color: context.colorScheme.primary, size: 30.r),
+                          style: context.textTheme.headlineSmall!.xb.copyWith(color: context.colorScheme.primary)),
+                      Icon(Icons.notifications_none_outlined, color: context.colorScheme.primary, size: 30.r),
                     ],
                   ),
                 ),
@@ -73,7 +97,7 @@ class HomeScreen extends StatelessWidget {
               SliverAppBar(
                 backgroundColor: context.colorScheme.background,
                 title: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 10),
+                  padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                   child: Text(
                     'Categories',
                     style: context.textTheme.titleSmall!.xb,
@@ -94,14 +118,14 @@ class HomeScreen extends StatelessWidget {
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
                           itemBuilder: (context, index) => Padding(
-                            padding: REdgeInsetsDirectional.only(end: 8.0,start: (index==0)?10:0),
+                            padding: REdgeInsetsDirectional.only(end: 8.0, start: (index == 0) ? 10 : 0),
                             child: CustomeChip(text: 'lable$index', image: 'assets/images/house.png'),
                           ),
                           itemCount: 10,
                         ),
                       ),
                       Padding(
-                        padding: REdgeInsetsDirectional.only(top: 10, bottom: 7,start: 10,end: 10),
+                        padding: REdgeInsetsDirectional.only(top: 10, bottom: 7, start: 10, end: 10),
                         child: Text(
                           'Nearby for you',
                           style: context.textTheme.titleSmall!.xb,
@@ -111,16 +135,31 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                (context, index) => const Padding(
-                  padding:  EdgeInsets.symmetric(horizontal: 10),
-                  child: CardHome(),
-                ),
-                childCount: 10,
-              )),
+              BlocSelector<HomeBloc, HomeState, PageState<PostModel>>(
+                selector: (state) => state.postHome,
+                builder: (context, state) {
+                  return state.when(
+                    init: () => const SliverFillRemaining(child: SizedBox.shrink()),
+                    loading: () =>  const SliverFillRemaining(child: LoadingIndicator()),
+                    loaded: (data) => SliverList(
+                        delegate: SliverChildBuilderDelegate(
+                      (context, index) => Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        child: CardHome(
+                          postModel: data,
+                        ),
+                      ),
+                      childCount: 1,
+                    )),
+                    empty: () => const SliverFillRemaining(child: SizedBox.shrink()),
+                    error: (exception, error) => const SliverFillRemaining(child: SizedBox.shrink()),
+                  );
+                },
+              ),
             ],
-          )),
+          ),
+        )),
+      ),
     );
   }
 }

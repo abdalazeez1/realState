@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 import 'package:realstate/common/network/exceptions/exceptions.dart';
 import 'package:realstate/common/theme/typography.dart';
 import 'package:realstate/feature/ad_details/presentation/ui/screens/comment.dart';
+import 'package:realstate/feature/home/infrastructure/model/post_model.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../../../../common/app_widget/RLocationAndRate.dart';
 import '../../../../../common/app_widget/buttom_on_image.dart';
@@ -14,7 +15,6 @@ import '../../../../../common/app_widget/features_home.dart';
 import '../widgets/borker_card.dart';
 import '../widgets/bottun.dart';
 import '../widgets/descraption.dart';
-import '../widgets/Box_blue.dart';
 
 int activeIndex = 0;
 final imageDemo = [
@@ -28,10 +28,11 @@ class DetailScreen extends StatefulWidget {
 
   static const path = 'detail';
   static const name = 'detail';
+  final PostModel postModel;
   static Widget pageBuilder(BuildContext context, GoRouterState state) {
-    return const DetailScreen();
+    return DetailScreen(postModel: state.extra as PostModel,);
   }
-  const DetailScreen({super.key});
+  const DetailScreen({super.key, required this.postModel});
 
   @override
   State<DetailScreen> createState() => _DetailScreenState();
@@ -69,18 +70,18 @@ class _DetailScreenState extends State<DetailScreen> {
                       return bulidImage(imageDDDd, index, context);
                     },
                   ),
-                  Positioned(
+                  PositionedDirectional(
                     top: 4,
-                    left: -2,
+                    start: -2,
                     child: ButtonOnImage(
                         icon: CupertinoIcons.back,
                         fun: () {
                           Navigator.pop(context);
                         }),
                   ),
-                  Positioned(
+                  PositionedDirectional(
                     top: 4,
-                    right: -2,
+                    end: -2,
                     child: ButtonOnImage(icon: Icons.bookmark, fun: () {}),
                   ),
                 ],
@@ -93,15 +94,15 @@ class _DetailScreenState extends State<DetailScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Modern Family House",
+                  widget.postModel.category_name??'',
                   style: context.textTheme.titleLarge!.b,
                 ),
-                Text('\$230', style: context.textTheme.bodyLarge!.xb.copyWith(color: context.colorScheme.primary)),
+                Text(widget.postModel.types?[0].price.toString()??'', style: context.textTheme.bodyLarge!.xb.copyWith(color: context.colorScheme.primary)),
               ],
             ),
             Row(
               children: [
-                const LocationAndRateRow(),
+                LocationAndRateRow(location: "${widget.postModel.area}, ${widget.postModel.city}",rate: '4,8'),
                 5.horizontalSpace,
                 IconButton(
                   onPressed: () {
@@ -128,9 +129,9 @@ class _DetailScreenState extends State<DetailScreen> {
               ),
             ),
             // 10.verticalSpace,
-            const Description(),
+            Description(description: widget.postModel.description??''),
             10.verticalSpace,
-            const BrokerCard(),
+            const BrokerCard(imageUser: 'assets/images/monier.jpg',userName: 'Mounir Anas'),
             25.verticalSpace,
             Row(
               mainAxisAlignment: MainAxisAlignment.center,

@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LocationAndRateRow extends StatelessWidget {
-  const LocationAndRateRow({super.key});
+  final String location;
+  final String rate;
+  const LocationAndRateRow({super.key, required this.location, required this.rate});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +17,7 @@ class LocationAndRateRow extends StatelessWidget {
           size: 20.r,
         ),
         Text(
-          'Los Angels, USA',
+          location,
           style: Theme.of(context).textTheme.labelSmall!.copyWith(color: Colors.grey, fontSize: 10.sp),
         ),
         17.horizontalSpace,
@@ -26,7 +28,7 @@ class LocationAndRateRow extends StatelessWidget {
         ),
         6.horizontalSpace,
         Text(
-          '4,8',
+          rate,
           style: Theme.of(context).textTheme.labelSmall!.copyWith(color: Colors.grey, fontSize: 10.sp),
         )
       ],

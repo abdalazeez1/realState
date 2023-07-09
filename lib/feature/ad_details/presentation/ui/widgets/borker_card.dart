@@ -4,7 +4,9 @@ import 'package:realstate/common/network/exceptions/exceptions.dart';
 import 'package:realstate/common/theme/typography.dart';
 
 class BrokerCard extends StatelessWidget {
-  const BrokerCard({super.key});
+  final String imageUser;
+  final String userName;
+  const BrokerCard({super.key, required this.imageUser, required this.userName});
 
   @override
   Widget build(BuildContext context) {
@@ -17,13 +19,13 @@ class BrokerCard extends StatelessWidget {
       child:  Row(
         children: [
           CircleAvatar(
-            backgroundImage: AssetImage('assets/images/monier.jpg'),
+            backgroundImage: AssetImage(imageUser),
           ),
           10.horizontalSpace,
           Column(
             children: [
               Text(
-                'Mounir Anas',
+                userName,
                 style: context.textTheme.bodyMedium!.xb,
               ),
               Text('Owner/Agent',style: context.textTheme.bodySmall,)

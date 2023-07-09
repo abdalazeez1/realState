@@ -5,18 +5,20 @@ import 'package:realstate/common/network/exceptions/exceptions.dart';
 import 'package:realstate/common/theme/typography.dart';
 import 'package:realstate/common/app_widget/buttom_on_image.dart';
 import 'package:realstate/common/app_widget/features_home.dart';
+import 'package:realstate/feature/home/infrastructure/model/post_model.dart';
 
 import '../../../../../common/app_widget/RLocationAndRate.dart';
 import '../../../../ad_details/presentation/ui/screens/ad_detalis.dart';
 
 class CardHome extends StatelessWidget {
-  const CardHome({Key? key}) : super(key: key);
+  final PostModel postModel;
+  const CardHome({Key? key, required this.postModel}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        context.pushNamed(DetailScreen.name);
+        context.pushNamed(DetailScreen.name,extra: postModel);
       },
       child: Card(
         margin: REdgeInsetsDirectional.only(bottom: 25),
@@ -34,12 +36,12 @@ class CardHome extends StatelessWidget {
                   Image.asset(
                     height: 150.h,
                     width: double.infinity,
-                    'assets/images/villa.webp',
+                    postModel.images?[0]??'assets/images/villa.webp',
                     fit: BoxFit.cover,
                   ),
-                   Positioned(
+                   PositionedDirectional(
                     top: 4,
-                    right: -2,
+                    end: -2,
                     child: ButtonOnImage(icon: Icons.bookmark,fun: (){}),
                   )
                 ],
@@ -58,11 +60,11 @@ class CardHome extends StatelessWidget {
                           Column(
                             children: [
                               Text(
-                                "Modern Family House",
+                                postModel.category_name??'',
                                 style: context.textTheme.titleMedium!.b,
                               ),
                               5.verticalSpace,
-                              const LocationAndRateRow(),
+                              LocationAndRateRow(location: "${postModel.area}, ${postModel.city}",rate: '4,8'),
                             ],
                           ),
                           VerticalDivider(color: Colors.grey, width: 10.w, thickness: 1),
@@ -74,7 +76,7 @@ class CardHome extends StatelessWidget {
                                 height: 20.h,
                               )),
                               TextSpan(
-                                  text: '\$230',
+                                  text: postModel.types?[0].price.toString()??'',
                                   style: context.textTheme.bodyLarge!.xb.copyWith(color: context.colorScheme.primary)),
                             ]),
                           ),
