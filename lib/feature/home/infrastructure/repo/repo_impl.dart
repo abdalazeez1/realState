@@ -1,7 +1,7 @@
 import 'package:injectable/injectable.dart';
 import 'package:realstate/common/constant/params.dart';
 import 'package:realstate/common/network/result.dart';
-import 'package:realstate/feature/home/infrastructure/model/post_model.dart';
+import 'package:realstate/feature/home/infrastructure/model/post_model/post_model.dart';
 
 import '../../../../common/constant/response_wrapper.dart';
 import '../../../../common/network/api_utils.dart';
@@ -16,7 +16,7 @@ class HomeRepoImpl implements IHomeRepo {
 
 
   @override
-  Future<Result<ResponseWrapper<PostModel>>> getPosts() {
+  Future<Result<ResponseWrapper<List<PostModel>>>> getPosts() {
     return toApiResult(() async {
       final result = await _remote.getPostsModel();
       return result;

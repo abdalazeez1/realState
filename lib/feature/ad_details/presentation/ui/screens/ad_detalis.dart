@@ -7,7 +7,7 @@ import 'package:go_router/go_router.dart';
 import 'package:realstate/common/network/exceptions/exceptions.dart';
 import 'package:realstate/common/theme/typography.dart';
 import 'package:realstate/feature/ad_details/presentation/ui/screens/comment.dart';
-import 'package:realstate/feature/home/infrastructure/model/post_model.dart';
+import 'package:realstate/feature/home/infrastructure/model/post_model/post_model.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../../../../common/app_widget/RLocationAndRate.dart';
 import '../../../../../common/app_widget/buttom_on_image.dart';
@@ -94,15 +94,15 @@ class _DetailScreenState extends State<DetailScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  widget.postModel.category_name??'',
+                  widget.postModel.category??'',
                   style: context.textTheme.titleLarge!.b,
                 ),
-                Text(widget.postModel.types?[0].price.toString()??'', style: context.textTheme.bodyLarge!.xb.copyWith(color: context.colorScheme.primary)),
+                Text(widget.postModel.types.isNotEmpty?widget.postModel.types[0]?.price.toString()??'':'', style: context.textTheme.bodyLarge!.xb.copyWith(color: context.colorScheme.primary)),
               ],
             ),
             Row(
               children: [
-                LocationAndRateRow(location: "${widget.postModel.area}, ${widget.postModel.city}",rate: '4,8'),
+                LocationAndRateRow(location: widget.postModel.area?.name??'',rate: '4,8'),
                 5.horizontalSpace,
                 IconButton(
                   onPressed: () {

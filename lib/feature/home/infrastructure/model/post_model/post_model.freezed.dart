@@ -21,19 +21,23 @@ PostModel _$PostModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$PostModel {
   int? get id => throw _privateConstructorUsedError;
+  int? get user_id => throw _privateConstructorUsedError;
+  int? get area_id => throw _privateConstructorUsedError;
+  int? get catecory_id => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
-  double? get longitude => throw _privateConstructorUsedError;
-  double? get latitude => throw _privateConstructorUsedError;
+  String? get longitude => throw _privateConstructorUsedError;
+  String? get latitude => throw _privateConstructorUsedError;
   int? get available => throw _privateConstructorUsedError;
+  String? get created_at => throw _privateConstructorUsedError;
+  String? get updated_at => throw _privateConstructorUsedError;
   int? get diffInDay => throw _privateConstructorUsedError;
-  String? get user_name => throw _privateConstructorUsedError;
-  String? get area => throw _privateConstructorUsedError;
-  String? get city => throw _privateConstructorUsedError;
-  String? get category_name => throw _privateConstructorUsedError;
-  List<String>? get comments => throw _privateConstructorUsedError;
-  List<String>? get images => throw _privateConstructorUsedError;
-  List<FeaturesPost>? get informations => throw _privateConstructorUsedError;
-  List<TypesPost>? get types => throw _privateConstructorUsedError;
+  AuthenticatedUser get his_user => throw _privateConstructorUsedError;
+  AreaPost? get area => throw _privateConstructorUsedError;
+  dynamic? get category => throw _privateConstructorUsedError;
+  List<String?> get comments => throw _privateConstructorUsedError;
+  List<String?> get images => throw _privateConstructorUsedError;
+  List<FeaturesPost?> get informations => throw _privateConstructorUsedError;
+  List<TypesPost?> get types => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -48,19 +52,26 @@ abstract class $PostModelCopyWith<$Res> {
   @useResult
   $Res call(
       {int? id,
+      int? user_id,
+      int? area_id,
+      int? catecory_id,
       String? description,
-      double? longitude,
-      double? latitude,
+      String? longitude,
+      String? latitude,
       int? available,
+      String? created_at,
+      String? updated_at,
       int? diffInDay,
-      String? user_name,
-      String? area,
-      String? city,
-      String? category_name,
-      List<String>? comments,
-      List<String>? images,
-      List<FeaturesPost>? informations,
-      List<TypesPost>? types});
+      AuthenticatedUser his_user,
+      AreaPost? area,
+      dynamic? category,
+      List<String?> comments,
+      List<String?> images,
+      List<FeaturesPost?> informations,
+      List<TypesPost?> types});
+
+  $AuthenticatedUserCopyWith<$Res> get his_user;
+  $AreaPostCopyWith<$Res>? get area;
 }
 
 /// @nodoc
@@ -77,24 +88,40 @@ class _$PostModelCopyWithImpl<$Res, $Val extends PostModel>
   @override
   $Res call({
     Object? id = freezed,
+    Object? user_id = freezed,
+    Object? area_id = freezed,
+    Object? catecory_id = freezed,
     Object? description = freezed,
     Object? longitude = freezed,
     Object? latitude = freezed,
     Object? available = freezed,
+    Object? created_at = freezed,
+    Object? updated_at = freezed,
     Object? diffInDay = freezed,
-    Object? user_name = freezed,
+    Object? his_user = null,
     Object? area = freezed,
-    Object? city = freezed,
-    Object? category_name = freezed,
-    Object? comments = freezed,
-    Object? images = freezed,
-    Object? informations = freezed,
-    Object? types = freezed,
+    Object? category = freezed,
+    Object? comments = null,
+    Object? images = null,
+    Object? informations = null,
+    Object? types = null,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      user_id: freezed == user_id
+          ? _value.user_id
+          : user_id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      area_id: freezed == area_id
+          ? _value.area_id
+          : area_id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      catecory_id: freezed == catecory_id
+          ? _value.catecory_id
+          : catecory_id // ignore: cast_nullable_to_non_nullable
               as int?,
       description: freezed == description
           ? _value.description
@@ -103,52 +130,76 @@ class _$PostModelCopyWithImpl<$Res, $Val extends PostModel>
       longitude: freezed == longitude
           ? _value.longitude
           : longitude // ignore: cast_nullable_to_non_nullable
-              as double?,
+              as String?,
       latitude: freezed == latitude
           ? _value.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
-              as double?,
+              as String?,
       available: freezed == available
           ? _value.available
           : available // ignore: cast_nullable_to_non_nullable
               as int?,
+      created_at: freezed == created_at
+          ? _value.created_at
+          : created_at // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updated_at: freezed == updated_at
+          ? _value.updated_at
+          : updated_at // ignore: cast_nullable_to_non_nullable
+              as String?,
       diffInDay: freezed == diffInDay
           ? _value.diffInDay
           : diffInDay // ignore: cast_nullable_to_non_nullable
               as int?,
-      user_name: freezed == user_name
-          ? _value.user_name
-          : user_name // ignore: cast_nullable_to_non_nullable
-              as String?,
+      his_user: null == his_user
+          ? _value.his_user
+          : his_user // ignore: cast_nullable_to_non_nullable
+              as AuthenticatedUser,
       area: freezed == area
           ? _value.area
           : area // ignore: cast_nullable_to_non_nullable
-              as String?,
-      city: freezed == city
-          ? _value.city
-          : city // ignore: cast_nullable_to_non_nullable
-              as String?,
-      category_name: freezed == category_name
-          ? _value.category_name
-          : category_name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      comments: freezed == comments
+              as AreaPost?,
+      category: freezed == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as dynamic?,
+      comments: null == comments
           ? _value.comments
           : comments // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-      images: freezed == images
+              as List<String?>,
+      images: null == images
           ? _value.images
           : images // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-      informations: freezed == informations
+              as List<String?>,
+      informations: null == informations
           ? _value.informations
           : informations // ignore: cast_nullable_to_non_nullable
-              as List<FeaturesPost>?,
-      types: freezed == types
+              as List<FeaturesPost?>,
+      types: null == types
           ? _value.types
           : types // ignore: cast_nullable_to_non_nullable
-              as List<TypesPost>?,
+              as List<TypesPost?>,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $AuthenticatedUserCopyWith<$Res> get his_user {
+    return $AuthenticatedUserCopyWith<$Res>(_value.his_user, (value) {
+      return _then(_value.copyWith(his_user: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $AreaPostCopyWith<$Res>? get area {
+    if (_value.area == null) {
+      return null;
+    }
+
+    return $AreaPostCopyWith<$Res>(_value.area!, (value) {
+      return _then(_value.copyWith(area: value) as $Val);
+    });
   }
 }
 
@@ -161,19 +212,28 @@ abstract class _$$_PostModelCopyWith<$Res> implements $PostModelCopyWith<$Res> {
   @useResult
   $Res call(
       {int? id,
+      int? user_id,
+      int? area_id,
+      int? catecory_id,
       String? description,
-      double? longitude,
-      double? latitude,
+      String? longitude,
+      String? latitude,
       int? available,
+      String? created_at,
+      String? updated_at,
       int? diffInDay,
-      String? user_name,
-      String? area,
-      String? city,
-      String? category_name,
-      List<String>? comments,
-      List<String>? images,
-      List<FeaturesPost>? informations,
-      List<TypesPost>? types});
+      AuthenticatedUser his_user,
+      AreaPost? area,
+      dynamic? category,
+      List<String?> comments,
+      List<String?> images,
+      List<FeaturesPost?> informations,
+      List<TypesPost?> types});
+
+  @override
+  $AuthenticatedUserCopyWith<$Res> get his_user;
+  @override
+  $AreaPostCopyWith<$Res>? get area;
 }
 
 /// @nodoc
@@ -188,24 +248,40 @@ class __$$_PostModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? user_id = freezed,
+    Object? area_id = freezed,
+    Object? catecory_id = freezed,
     Object? description = freezed,
     Object? longitude = freezed,
     Object? latitude = freezed,
     Object? available = freezed,
+    Object? created_at = freezed,
+    Object? updated_at = freezed,
     Object? diffInDay = freezed,
-    Object? user_name = freezed,
+    Object? his_user = null,
     Object? area = freezed,
-    Object? city = freezed,
-    Object? category_name = freezed,
-    Object? comments = freezed,
-    Object? images = freezed,
-    Object? informations = freezed,
-    Object? types = freezed,
+    Object? category = freezed,
+    Object? comments = null,
+    Object? images = null,
+    Object? informations = null,
+    Object? types = null,
   }) {
     return _then(_$_PostModel(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      user_id: freezed == user_id
+          ? _value.user_id
+          : user_id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      area_id: freezed == area_id
+          ? _value.area_id
+          : area_id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      catecory_id: freezed == catecory_id
+          ? _value.catecory_id
+          : catecory_id // ignore: cast_nullable_to_non_nullable
               as int?,
       description: freezed == description
           ? _value.description
@@ -214,51 +290,55 @@ class __$$_PostModelCopyWithImpl<$Res>
       longitude: freezed == longitude
           ? _value.longitude
           : longitude // ignore: cast_nullable_to_non_nullable
-              as double?,
+              as String?,
       latitude: freezed == latitude
           ? _value.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
-              as double?,
+              as String?,
       available: freezed == available
           ? _value.available
           : available // ignore: cast_nullable_to_non_nullable
               as int?,
+      created_at: freezed == created_at
+          ? _value.created_at
+          : created_at // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updated_at: freezed == updated_at
+          ? _value.updated_at
+          : updated_at // ignore: cast_nullable_to_non_nullable
+              as String?,
       diffInDay: freezed == diffInDay
           ? _value.diffInDay
           : diffInDay // ignore: cast_nullable_to_non_nullable
               as int?,
-      user_name: freezed == user_name
-          ? _value.user_name
-          : user_name // ignore: cast_nullable_to_non_nullable
-              as String?,
+      his_user: null == his_user
+          ? _value.his_user
+          : his_user // ignore: cast_nullable_to_non_nullable
+              as AuthenticatedUser,
       area: freezed == area
           ? _value.area
           : area // ignore: cast_nullable_to_non_nullable
-              as String?,
-      city: freezed == city
-          ? _value.city
-          : city // ignore: cast_nullable_to_non_nullable
-              as String?,
-      category_name: freezed == category_name
-          ? _value.category_name
-          : category_name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      comments: freezed == comments
+              as AreaPost?,
+      category: freezed == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as dynamic?,
+      comments: null == comments
           ? _value._comments
           : comments // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-      images: freezed == images
+              as List<String?>,
+      images: null == images
           ? _value._images
           : images // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-      informations: freezed == informations
+              as List<String?>,
+      informations: null == informations
           ? _value._informations
           : informations // ignore: cast_nullable_to_non_nullable
-              as List<FeaturesPost>?,
-      types: freezed == types
+              as List<FeaturesPost?>,
+      types: null == types
           ? _value._types
           : types // ignore: cast_nullable_to_non_nullable
-              as List<TypesPost>?,
+              as List<TypesPost?>,
     ));
   }
 }
@@ -268,19 +348,23 @@ class __$$_PostModelCopyWithImpl<$Res>
 class _$_PostModel implements _PostModel {
   const _$_PostModel(
       {required this.id,
+      required this.user_id,
+      required this.area_id,
+      required this.catecory_id,
       required this.description,
       required this.longitude,
       required this.latitude,
       required this.available,
+      required this.created_at,
+      required this.updated_at,
       required this.diffInDay,
-      required this.user_name,
+      required this.his_user,
       required this.area,
-      required this.city,
-      required this.category_name,
-      required final List<String>? comments,
-      required final List<String>? images,
-      required final List<FeaturesPost>? informations,
-      required final List<TypesPost>? types})
+      required this.category,
+      required final List<String?> comments,
+      required final List<String?> images,
+      required final List<FeaturesPost?> informations,
+      required final List<TypesPost?> types})
       : _comments = comments,
         _images = images,
         _informations = informations,
@@ -292,66 +376,66 @@ class _$_PostModel implements _PostModel {
   @override
   final int? id;
   @override
+  final int? user_id;
+  @override
+  final int? area_id;
+  @override
+  final int? catecory_id;
+  @override
   final String? description;
   @override
-  final double? longitude;
+  final String? longitude;
   @override
-  final double? latitude;
+  final String? latitude;
   @override
   final int? available;
   @override
+  final String? created_at;
+  @override
+  final String? updated_at;
+  @override
   final int? diffInDay;
   @override
-  final String? user_name;
+  final AuthenticatedUser his_user;
   @override
-  final String? area;
+  final AreaPost? area;
   @override
-  final String? city;
+  final dynamic? category;
+  final List<String?> _comments;
   @override
-  final String? category_name;
-  final List<String>? _comments;
-  @override
-  List<String>? get comments {
-    final value = _comments;
-    if (value == null) return null;
+  List<String?> get comments {
     if (_comments is EqualUnmodifiableListView) return _comments;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
+    return EqualUnmodifiableListView(_comments);
   }
 
-  final List<String>? _images;
+  final List<String?> _images;
   @override
-  List<String>? get images {
-    final value = _images;
-    if (value == null) return null;
+  List<String?> get images {
     if (_images is EqualUnmodifiableListView) return _images;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
+    return EqualUnmodifiableListView(_images);
   }
 
-  final List<FeaturesPost>? _informations;
+  final List<FeaturesPost?> _informations;
   @override
-  List<FeaturesPost>? get informations {
-    final value = _informations;
-    if (value == null) return null;
+  List<FeaturesPost?> get informations {
     if (_informations is EqualUnmodifiableListView) return _informations;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
+    return EqualUnmodifiableListView(_informations);
   }
 
-  final List<TypesPost>? _types;
+  final List<TypesPost?> _types;
   @override
-  List<TypesPost>? get types {
-    final value = _types;
-    if (value == null) return null;
+  List<TypesPost?> get types {
     if (_types is EqualUnmodifiableListView) return _types;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
+    return EqualUnmodifiableListView(_types);
   }
 
   @override
   String toString() {
-    return 'PostModel(id: $id, description: $description, longitude: $longitude, latitude: $latitude, available: $available, diffInDay: $diffInDay, user_name: $user_name, area: $area, city: $city, category_name: $category_name, comments: $comments, images: $images, informations: $informations, types: $types)';
+    return 'PostModel(id: $id, user_id: $user_id, area_id: $area_id, catecory_id: $catecory_id, description: $description, longitude: $longitude, latitude: $latitude, available: $available, created_at: $created_at, updated_at: $updated_at, diffInDay: $diffInDay, his_user: $his_user, area: $area, category: $category, comments: $comments, images: $images, informations: $informations, types: $types)';
   }
 
   @override
@@ -360,6 +444,10 @@ class _$_PostModel implements _PostModel {
         (other.runtimeType == runtimeType &&
             other is _$_PostModel &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.user_id, user_id) || other.user_id == user_id) &&
+            (identical(other.area_id, area_id) || other.area_id == area_id) &&
+            (identical(other.catecory_id, catecory_id) ||
+                other.catecory_id == catecory_id) &&
             (identical(other.description, description) ||
                 other.description == description) &&
             (identical(other.longitude, longitude) ||
@@ -368,14 +456,16 @@ class _$_PostModel implements _PostModel {
                 other.latitude == latitude) &&
             (identical(other.available, available) ||
                 other.available == available) &&
+            (identical(other.created_at, created_at) ||
+                other.created_at == created_at) &&
+            (identical(other.updated_at, updated_at) ||
+                other.updated_at == updated_at) &&
             (identical(other.diffInDay, diffInDay) ||
                 other.diffInDay == diffInDay) &&
-            (identical(other.user_name, user_name) ||
-                other.user_name == user_name) &&
+            (identical(other.his_user, his_user) ||
+                other.his_user == his_user) &&
             (identical(other.area, area) || other.area == area) &&
-            (identical(other.city, city) || other.city == city) &&
-            (identical(other.category_name, category_name) ||
-                other.category_name == category_name) &&
+            const DeepCollectionEquality().equals(other.category, category) &&
             const DeepCollectionEquality().equals(other._comments, _comments) &&
             const DeepCollectionEquality().equals(other._images, _images) &&
             const DeepCollectionEquality()
@@ -388,15 +478,19 @@ class _$_PostModel implements _PostModel {
   int get hashCode => Object.hash(
       runtimeType,
       id,
+      user_id,
+      area_id,
+      catecory_id,
       description,
       longitude,
       latitude,
       available,
+      created_at,
+      updated_at,
       diffInDay,
-      user_name,
+      his_user,
       area,
-      city,
-      category_name,
+      const DeepCollectionEquality().hash(category),
       const DeepCollectionEquality().hash(_comments),
       const DeepCollectionEquality().hash(_images),
       const DeepCollectionEquality().hash(_informations),
@@ -419,19 +513,23 @@ class _$_PostModel implements _PostModel {
 abstract class _PostModel implements PostModel {
   const factory _PostModel(
       {required final int? id,
+      required final int? user_id,
+      required final int? area_id,
+      required final int? catecory_id,
       required final String? description,
-      required final double? longitude,
-      required final double? latitude,
+      required final String? longitude,
+      required final String? latitude,
       required final int? available,
+      required final String? created_at,
+      required final String? updated_at,
       required final int? diffInDay,
-      required final String? user_name,
-      required final String? area,
-      required final String? city,
-      required final String? category_name,
-      required final List<String>? comments,
-      required final List<String>? images,
-      required final List<FeaturesPost>? informations,
-      required final List<TypesPost>? types}) = _$_PostModel;
+      required final AuthenticatedUser his_user,
+      required final AreaPost? area,
+      required final dynamic? category,
+      required final List<String?> comments,
+      required final List<String?> images,
+      required final List<FeaturesPost?> informations,
+      required final List<TypesPost?> types}) = _$_PostModel;
 
   factory _PostModel.fromJson(Map<String, dynamic> json) =
       _$_PostModel.fromJson;
@@ -439,31 +537,39 @@ abstract class _PostModel implements PostModel {
   @override
   int? get id;
   @override
+  int? get user_id;
+  @override
+  int? get area_id;
+  @override
+  int? get catecory_id;
+  @override
   String? get description;
   @override
-  double? get longitude;
+  String? get longitude;
   @override
-  double? get latitude;
+  String? get latitude;
   @override
   int? get available;
   @override
+  String? get created_at;
+  @override
+  String? get updated_at;
+  @override
   int? get diffInDay;
   @override
-  String? get user_name;
+  AuthenticatedUser get his_user;
   @override
-  String? get area;
+  AreaPost? get area;
   @override
-  String? get city;
+  dynamic? get category;
   @override
-  String? get category_name;
+  List<String?> get comments;
   @override
-  List<String>? get comments;
+  List<String?> get images;
   @override
-  List<String>? get images;
+  List<FeaturesPost?> get informations;
   @override
-  List<FeaturesPost>? get informations;
-  @override
-  List<TypesPost>? get types;
+  List<TypesPost?> get types;
   @override
   @JsonKey(ignore: true)
   _$$_PostModelCopyWith<_$_PostModel> get copyWith =>

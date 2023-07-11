@@ -17,5 +17,5 @@ class _Auth {
 class _Home {
   const _Home();
 
-  final getHome = 'dashboard/post/2';
+  final getHome = 'dashboard/post';
 }

@@ -8,7 +8,7 @@ import 'package:realstate/common/network/page_state/page_state.dart';
 import '../../application/facade.dart';
 import 'package:realstate/common/network/result.dart';
 
-import '../../infrastructure/model/post_model.dart';
+import '../../infrastructure/model/post_model/post_model.dart';
 part 'home_event.dart';
 part 'home_state.dart';
 @injectable

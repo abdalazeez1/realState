@@ -7,7 +7,7 @@ import 'package:realstate/common/helper/dependencie_injection.dart';
 import 'package:realstate/common/network/exceptions/exceptions.dart';
 import 'package:realstate/common/network/page_state/page_state.dart';
 import 'package:realstate/common/theme/typography.dart';
-import 'package:realstate/feature/home/infrastructure/model/post_model.dart';
+import 'package:realstate/feature/home/infrastructure/model/post_model/post_model.dart';
 import 'package:realstate/feature/home/presentation/state/home_bloc.dart';
 
 import '../../../../../common/app_widget/loading_widget.dart';
@@ -135,7 +135,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
               ),
-              BlocSelector<HomeBloc, HomeState, PageState<PostModel>>(
+              BlocSelector<HomeBloc, HomeState, PageState<List<PostModel>>>(
                 selector: (state) => state.postHome,
                 builder: (context, state) {
                   return state.when(
@@ -146,10 +146,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       (context, index) => Padding(
                         padding: EdgeInsets.symmetric(horizontal: 10),
                         child: CardHome(
-                          postModel: data,
+                          postModel: data[index],
                         ),
                       ),
-                      childCount: 1,
+                      childCount: state.getDataWhenSuccess?.length??0,
                     )),
                     empty: () => const SliverFillRemaining(child: SizedBox.shrink()),
                     error: (exception, error) => const SliverFillRemaining(child: SizedBox.shrink()),
@@ -163,6 +163,18 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+
+/*PagedSliverList(
+                      pagingController: state,
+                      builderDelegate: PagedChildBuilderDelegate(
+                        itemBuilder: (context, item, index) => Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 10),
+                          child: CardHome(
+                            postModel: data[index],
+                          ),
+                        ),
+                      ),
+                    )*/
 /*NestedScrollView(
           headerSliverBuilder: (context, innerBoxIsScrolled) {
             return [
