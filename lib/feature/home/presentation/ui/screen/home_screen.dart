@@ -7,6 +7,7 @@ import 'package:realstate/common/helper/dependencie_injection.dart';
 import 'package:realstate/common/network/exceptions/exceptions.dart';
 import 'package:realstate/common/network/page_state/page_state.dart';
 import 'package:realstate/common/theme/typography.dart';
+import 'package:realstate/feature/home/infrastructure/model/category_model/category.dart';
 import 'package:realstate/feature/home/infrastructure/model/post_model/post_model.dart';
 import 'package:realstate/feature/home/presentation/state/home_bloc.dart';
 
@@ -35,6 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     homeBloc = getIt<HomeBloc>();
     homeBloc.add(GetAllPostHome());
+    homeBloc.add(GetAllCategoriesHome());
     super.initState();
   }
 
@@ -45,7 +47,10 @@ class _HomeScreenState extends State<HomeScreen> {
       child: SafeArea(
         child: Scaffold(
             body: RefreshIndicator(
-          onRefresh: () async => homeBloc.add(GetAllPostHome()),
+          onRefresh: () async {
+            homeBloc.add(GetAllPostHome());
+            homeBloc.add(GetAllCategoriesHome());
+          },
           child: CustomScrollView(
             slivers: [
               SliverAppBar(
@@ -115,13 +120,34 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       SizedBox(
                         height: 40.h,
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (context, index) => Padding(
-                            padding: REdgeInsetsDirectional.only(end: 8.0, start: (index == 0) ? 10 : 0),
-                            child: CustomeChip(text: 'lable$index', image: 'assets/images/house.png'),
-                          ),
-                          itemCount: 10,
+                        child: Row(
+                          children: [
+                            Padding(
+                              padding: REdgeInsetsDirectional.only(start: 10),
+                              child: const CustomeChip(),
+                            ),
+                            Expanded(
+                              child: BlocSelector<HomeBloc, HomeState, PageState<List<CategoryModel>>>(
+                                selector: (state) => state.categoriesHome,
+                                builder: (context, state) {
+                                  return state.when(
+                                    init: () => SizedBox.shrink(),
+                                    loading: () => LoadingIndicator(),
+                                    loaded: (data) => ListView.builder(
+                                      scrollDirection: Axis.horizontal,
+                                      itemBuilder: (context, index) => Padding(
+                                        padding: REdgeInsetsDirectional.only(end: 8.0, start: (index == 0) ? 10 : 0),
+                                        child: CustomeChip(categoryModel: data[index]),
+                                      ),
+                                      itemCount: state.data.length,
+                                    ),
+                                    empty: () => SizedBox.shrink(),
+                                    error: (exception, error) => SizedBox.shrink(),
+                                  );
+                                },
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                       Padding(
@@ -140,7 +166,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 builder: (context, state) {
                   return state.when(
                     init: () => const SliverFillRemaining(child: SizedBox.shrink()),
-                    loading: () =>  const SliverFillRemaining(child: LoadingIndicator()),
+                    loading: () => const SliverFillRemaining(child: LoadingIndicator()),
                     loaded: (data) => SliverList(
                         delegate: SliverChildBuilderDelegate(
                       (context, index) => Padding(
@@ -149,7 +175,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           postModel: data[index],
                         ),
                       ),
-                      childCount: state.getDataWhenSuccess?.length??0,
+                      childCount: state.getDataWhenSuccess?.length ?? 0,
                     )),
                     empty: () => const SliverFillRemaining(child: SizedBox.shrink()),
                     error: (exception, error) => const SliverFillRemaining(child: SizedBox.shrink()),

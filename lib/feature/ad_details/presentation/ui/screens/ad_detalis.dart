@@ -97,7 +97,7 @@ class _DetailScreenState extends State<DetailScreen> {
                   widget.postModel.category??'',
                   style: context.textTheme.titleLarge!.b,
                 ),
-                Text(widget.postModel.types.isNotEmpty?widget.postModel.types[0]?.price.toString()??'':'', style: context.textTheme.bodyLarge!.xb.copyWith(color: context.colorScheme.primary)),
+                Text((widget.postModel.types?.isNotEmpty??false)?widget.postModel.types![0].price.toString():'', style: context.textTheme.bodyLarge!.xb.copyWith(color: context.colorScheme.primary)),
               ],
             ),
             Row(

@@ -22,13 +22,13 @@ class PostModel with _$PostModel {
     required String? created_at,
     required String? updated_at,
     required int? diffInDay,
-    required AuthenticatedUser his_user,
+    required AuthenticatedUser? his_user,
     required AreaPost? area,
     required dynamic? category,
-    required List<String?> comments,
-    required List<String?> images,
-    required List<FeaturesPost?> informations,
-    required List<TypesPost?> types,
+    required List<String>? comments,
+    required List<String>? images,
+    required List<FeaturesPost>? informations,
+    required List<TypesPost>? types,
   }) = _PostModel;
 
   factory PostModel.fromJson(Map<String, Object?> json)

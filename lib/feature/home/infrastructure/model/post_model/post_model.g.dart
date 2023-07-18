@@ -18,24 +18,24 @@ _$_PostModel _$$_PostModelFromJson(Map<String, dynamic> json) => _$_PostModel(
       created_at: json['created_at'] as String?,
       updated_at: json['updated_at'] as String?,
       diffInDay: json['diffInDay'] as int?,
-      his_user:
-          AuthenticatedUser.fromJson(json['his_user'] as Map<String, dynamic>),
+      his_user: json['his_user'] == null
+          ? null
+          : AuthenticatedUser.fromJson(
+              json['his_user'] as Map<String, dynamic>),
       area: json['area'] == null
           ? null
           : AreaPost.fromJson(json['area'] as Map<String, dynamic>),
       category: json['category'],
-      comments:
-          (json['comments'] as List<dynamic>).map((e) => e as String?).toList(),
-      images:
-          (json['images'] as List<dynamic>).map((e) => e as String?).toList(),
-      informations: (json['informations'] as List<dynamic>)
-          .map((e) => e == null
-              ? null
-              : FeaturesPost.fromJson(e as Map<String, dynamic>))
+      comments: (json['comments'] as List<dynamic>?)
+          ?.map((e) => e as String)
           .toList(),
-      types: (json['types'] as List<dynamic>)
-          .map((e) =>
-              e == null ? null : TypesPost.fromJson(e as Map<String, dynamic>))
+      images:
+          (json['images'] as List<dynamic>?)?.map((e) => e as String).toList(),
+      informations: (json['informations'] as List<dynamic>?)
+          ?.map((e) => FeaturesPost.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      types: (json['types'] as List<dynamic>?)
+          ?.map((e) => TypesPost.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

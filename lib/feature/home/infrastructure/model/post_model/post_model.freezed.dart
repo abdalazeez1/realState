@@ -31,13 +31,13 @@ mixin _$PostModel {
   String? get created_at => throw _privateConstructorUsedError;
   String? get updated_at => throw _privateConstructorUsedError;
   int? get diffInDay => throw _privateConstructorUsedError;
-  AuthenticatedUser get his_user => throw _privateConstructorUsedError;
+  AuthenticatedUser? get his_user => throw _privateConstructorUsedError;
   AreaPost? get area => throw _privateConstructorUsedError;
   dynamic? get category => throw _privateConstructorUsedError;
-  List<String?> get comments => throw _privateConstructorUsedError;
-  List<String?> get images => throw _privateConstructorUsedError;
-  List<FeaturesPost?> get informations => throw _privateConstructorUsedError;
-  List<TypesPost?> get types => throw _privateConstructorUsedError;
+  List<String>? get comments => throw _privateConstructorUsedError;
+  List<String>? get images => throw _privateConstructorUsedError;
+  List<FeaturesPost>? get informations => throw _privateConstructorUsedError;
+  List<TypesPost>? get types => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -62,15 +62,15 @@ abstract class $PostModelCopyWith<$Res> {
       String? created_at,
       String? updated_at,
       int? diffInDay,
-      AuthenticatedUser his_user,
+      AuthenticatedUser? his_user,
       AreaPost? area,
       dynamic? category,
-      List<String?> comments,
-      List<String?> images,
-      List<FeaturesPost?> informations,
-      List<TypesPost?> types});
+      List<String>? comments,
+      List<String>? images,
+      List<FeaturesPost>? informations,
+      List<TypesPost>? types});
 
-  $AuthenticatedUserCopyWith<$Res> get his_user;
+  $AuthenticatedUserCopyWith<$Res>? get his_user;
   $AreaPostCopyWith<$Res>? get area;
 }
 
@@ -98,13 +98,13 @@ class _$PostModelCopyWithImpl<$Res, $Val extends PostModel>
     Object? created_at = freezed,
     Object? updated_at = freezed,
     Object? diffInDay = freezed,
-    Object? his_user = null,
+    Object? his_user = freezed,
     Object? area = freezed,
     Object? category = freezed,
-    Object? comments = null,
-    Object? images = null,
-    Object? informations = null,
-    Object? types = null,
+    Object? comments = freezed,
+    Object? images = freezed,
+    Object? informations = freezed,
+    Object? types = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -151,10 +151,10 @@ class _$PostModelCopyWithImpl<$Res, $Val extends PostModel>
           ? _value.diffInDay
           : diffInDay // ignore: cast_nullable_to_non_nullable
               as int?,
-      his_user: null == his_user
+      his_user: freezed == his_user
           ? _value.his_user
           : his_user // ignore: cast_nullable_to_non_nullable
-              as AuthenticatedUser,
+              as AuthenticatedUser?,
       area: freezed == area
           ? _value.area
           : area // ignore: cast_nullable_to_non_nullable
@@ -163,29 +163,33 @@ class _$PostModelCopyWithImpl<$Res, $Val extends PostModel>
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as dynamic?,
-      comments: null == comments
+      comments: freezed == comments
           ? _value.comments
           : comments // ignore: cast_nullable_to_non_nullable
-              as List<String?>,
-      images: null == images
+              as List<String>?,
+      images: freezed == images
           ? _value.images
           : images // ignore: cast_nullable_to_non_nullable
-              as List<String?>,
-      informations: null == informations
+              as List<String>?,
+      informations: freezed == informations
           ? _value.informations
           : informations // ignore: cast_nullable_to_non_nullable
-              as List<FeaturesPost?>,
-      types: null == types
+              as List<FeaturesPost>?,
+      types: freezed == types
           ? _value.types
           : types // ignore: cast_nullable_to_non_nullable
-              as List<TypesPost?>,
+              as List<TypesPost>?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $AuthenticatedUserCopyWith<$Res> get his_user {
-    return $AuthenticatedUserCopyWith<$Res>(_value.his_user, (value) {
+  $AuthenticatedUserCopyWith<$Res>? get his_user {
+    if (_value.his_user == null) {
+      return null;
+    }
+
+    return $AuthenticatedUserCopyWith<$Res>(_value.his_user!, (value) {
       return _then(_value.copyWith(his_user: value) as $Val);
     });
   }
@@ -222,16 +226,16 @@ abstract class _$$_PostModelCopyWith<$Res> implements $PostModelCopyWith<$Res> {
       String? created_at,
       String? updated_at,
       int? diffInDay,
-      AuthenticatedUser his_user,
+      AuthenticatedUser? his_user,
       AreaPost? area,
       dynamic? category,
-      List<String?> comments,
-      List<String?> images,
-      List<FeaturesPost?> informations,
-      List<TypesPost?> types});
+      List<String>? comments,
+      List<String>? images,
+      List<FeaturesPost>? informations,
+      List<TypesPost>? types});
 
   @override
-  $AuthenticatedUserCopyWith<$Res> get his_user;
+  $AuthenticatedUserCopyWith<$Res>? get his_user;
   @override
   $AreaPostCopyWith<$Res>? get area;
 }
@@ -258,13 +262,13 @@ class __$$_PostModelCopyWithImpl<$Res>
     Object? created_at = freezed,
     Object? updated_at = freezed,
     Object? diffInDay = freezed,
-    Object? his_user = null,
+    Object? his_user = freezed,
     Object? area = freezed,
     Object? category = freezed,
-    Object? comments = null,
-    Object? images = null,
-    Object? informations = null,
-    Object? types = null,
+    Object? comments = freezed,
+    Object? images = freezed,
+    Object? informations = freezed,
+    Object? types = freezed,
   }) {
     return _then(_$_PostModel(
       id: freezed == id
@@ -311,10 +315,10 @@ class __$$_PostModelCopyWithImpl<$Res>
           ? _value.diffInDay
           : diffInDay // ignore: cast_nullable_to_non_nullable
               as int?,
-      his_user: null == his_user
+      his_user: freezed == his_user
           ? _value.his_user
           : his_user // ignore: cast_nullable_to_non_nullable
-              as AuthenticatedUser,
+              as AuthenticatedUser?,
       area: freezed == area
           ? _value.area
           : area // ignore: cast_nullable_to_non_nullable
@@ -323,22 +327,22 @@ class __$$_PostModelCopyWithImpl<$Res>
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as dynamic?,
-      comments: null == comments
+      comments: freezed == comments
           ? _value._comments
           : comments // ignore: cast_nullable_to_non_nullable
-              as List<String?>,
-      images: null == images
+              as List<String>?,
+      images: freezed == images
           ? _value._images
           : images // ignore: cast_nullable_to_non_nullable
-              as List<String?>,
-      informations: null == informations
+              as List<String>?,
+      informations: freezed == informations
           ? _value._informations
           : informations // ignore: cast_nullable_to_non_nullable
-              as List<FeaturesPost?>,
-      types: null == types
+              as List<FeaturesPost>?,
+      types: freezed == types
           ? _value._types
           : types // ignore: cast_nullable_to_non_nullable
-              as List<TypesPost?>,
+              as List<TypesPost>?,
     ));
   }
 }
@@ -361,10 +365,10 @@ class _$_PostModel implements _PostModel {
       required this.his_user,
       required this.area,
       required this.category,
-      required final List<String?> comments,
-      required final List<String?> images,
-      required final List<FeaturesPost?> informations,
-      required final List<TypesPost?> types})
+      required final List<String>? comments,
+      required final List<String>? images,
+      required final List<FeaturesPost>? informations,
+      required final List<TypesPost>? types})
       : _comments = comments,
         _images = images,
         _informations = informations,
@@ -396,41 +400,49 @@ class _$_PostModel implements _PostModel {
   @override
   final int? diffInDay;
   @override
-  final AuthenticatedUser his_user;
+  final AuthenticatedUser? his_user;
   @override
   final AreaPost? area;
   @override
   final dynamic? category;
-  final List<String?> _comments;
+  final List<String>? _comments;
   @override
-  List<String?> get comments {
+  List<String>? get comments {
+    final value = _comments;
+    if (value == null) return null;
     if (_comments is EqualUnmodifiableListView) return _comments;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_comments);
+    return EqualUnmodifiableListView(value);
   }
 
-  final List<String?> _images;
+  final List<String>? _images;
   @override
-  List<String?> get images {
+  List<String>? get images {
+    final value = _images;
+    if (value == null) return null;
     if (_images is EqualUnmodifiableListView) return _images;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_images);
+    return EqualUnmodifiableListView(value);
   }
 
-  final List<FeaturesPost?> _informations;
+  final List<FeaturesPost>? _informations;
   @override
-  List<FeaturesPost?> get informations {
+  List<FeaturesPost>? get informations {
+    final value = _informations;
+    if (value == null) return null;
     if (_informations is EqualUnmodifiableListView) return _informations;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_informations);
+    return EqualUnmodifiableListView(value);
   }
 
-  final List<TypesPost?> _types;
+  final List<TypesPost>? _types;
   @override
-  List<TypesPost?> get types {
+  List<TypesPost>? get types {
+    final value = _types;
+    if (value == null) return null;
     if (_types is EqualUnmodifiableListView) return _types;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_types);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
@@ -523,13 +535,13 @@ abstract class _PostModel implements PostModel {
       required final String? created_at,
       required final String? updated_at,
       required final int? diffInDay,
-      required final AuthenticatedUser his_user,
+      required final AuthenticatedUser? his_user,
       required final AreaPost? area,
       required final dynamic? category,
-      required final List<String?> comments,
-      required final List<String?> images,
-      required final List<FeaturesPost?> informations,
-      required final List<TypesPost?> types}) = _$_PostModel;
+      required final List<String>? comments,
+      required final List<String>? images,
+      required final List<FeaturesPost>? informations,
+      required final List<TypesPost>? types}) = _$_PostModel;
 
   factory _PostModel.fromJson(Map<String, dynamic> json) =
       _$_PostModel.fromJson;
@@ -557,19 +569,19 @@ abstract class _PostModel implements PostModel {
   @override
   int? get diffInDay;
   @override
-  AuthenticatedUser get his_user;
+  AuthenticatedUser? get his_user;
   @override
   AreaPost? get area;
   @override
   dynamic? get category;
   @override
-  List<String?> get comments;
+  List<String>? get comments;
   @override
-  List<String?> get images;
+  List<String>? get images;
   @override
-  List<FeaturesPost?> get informations;
+  List<FeaturesPost>? get informations;
   @override
-  List<TypesPost?> get types;
+  List<TypesPost>? get types;
   @override
   @JsonKey(ignore: true)
   _$$_PostModelCopyWith<_$_PostModel> get copyWith =>

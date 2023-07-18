@@ -39,8 +39,8 @@ class CardHome extends StatelessWidget {
                     height: 150.h,
                     width: double.infinity,
                     fit: BoxFit.cover,
-                    imageUrl: postModel.images.isNotEmpty
-                        ? postModel.images[0] ?? 'assets/images/villa.webp'
+                    imageUrl: (postModel.images?.isNotEmpty??false)
+                        ? postModel.images![0]
                         : 'assets/images/villa.webp',
                     errorWidget: (context, url, error) {
                       return Image.asset(
@@ -97,7 +97,7 @@ class CardHome extends StatelessWidget {
                                 height: 20.h,
                               )),
                               TextSpan(
-                                  text: postModel.types.isNotEmpty?postModel.types[0]?.price.toString() ?? '':'',
+                                  text: (postModel.types?.isNotEmpty??false)?postModel.types![0].price.toString() :'',
                                   style: context.textTheme.bodyLarge!.xb.copyWith(color: context.colorScheme.primary)),
                             ]),
                           ),

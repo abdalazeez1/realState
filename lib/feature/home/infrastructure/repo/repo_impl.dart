@@ -1,6 +1,7 @@
 import 'package:injectable/injectable.dart';
 import 'package:realstate/common/constant/params.dart';
 import 'package:realstate/common/network/result.dart';
+import 'package:realstate/feature/home/infrastructure/model/category_model/category.dart';
 import 'package:realstate/feature/home/infrastructure/model/post_model/post_model.dart';
 
 import '../../../../common/constant/response_wrapper.dart';
@@ -23,5 +24,20 @@ class HomeRepoImpl implements IHomeRepo {
     });
   }
 
+  @override
+  Future<Result<ResponseWrapper<List<CategoryModel>>>> getCategories() {
+    return toApiResult(() async{
+      final result= await _remote.getCategoryModel();
+      return result;
+    });
+  }
+
+  @override
+  Future<Result<ResponseWrapper<List<PostModel>>>> getPostsOfCategory(int id) {
+    return toApiResult(() async{
+      final result=await _remote.getPostsModelOfCategory(id);
+      return result;
+    });
+  }
 
 }

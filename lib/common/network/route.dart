@@ -17,5 +17,6 @@ class _Auth {
 class _Home {
   const _Home();
 
-  final getHome = 'dashboard/post';
+  final getPostsHome = 'dashboard/post';
+  final getCategoriesHome = 'dashboard/categories';
 }
